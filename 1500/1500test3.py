@@ -11,7 +11,11 @@ combo1 = int((input("Enter first combination number ")))
 combo2 = int((input("Enter second combination number ")))
 combo3 = int((input("Enter third combination number ")))
 cycles = int((input("Enter number of cycles ")))
+# these variables control speed of the various functions
 motorSpeed = .0002
+dialPause = .2
+shacklePause = .5
+
 distanceToZero = 40 - combo3
 pulse = False # pulses pin high and low to create a step
 direction = True # true = CW 
@@ -37,29 +41,29 @@ while cycles > 0:
     direction = not direction
     if combo2 > combo1:
         motorTurns(40 + (combo2 - combo1))
-        sleep(1)
+        sleep(dialPause)
         direction = not direction
     elif combo2 < combo1:
         motorTurns(40 + (40 - combo1 + combo2))
-        sleep(1)
+        sleep(dialPause)
         direction = not direction
     if combo3 > combo2:
         motorTurns(40 - combo3 + combo2)
-        sleep(1)
+        sleep(dialPause)
         direction = not direction
     elif combo3 < combo2:
         motorTurns(combo2 - combo3)
-        sleep(1)
+        sleep(dialPause)
         direction = not direction
-    sleep(.50)
+    sleep(shacklePause)
     RELAY.relayON(0,7) # pull shackle open
-    sleep(.50)
+    sleep(shacklePause)
     RELAY.relayOFF(0,7)
-    sleep(.25)
+    sleep(shacklePause)
     RELAY.relayON(0,6) # push shackle closed
-    sleep(.50)
+    sleep(shacklePause)
     RELAY.relayOFF(0,6)
-    sleep(.25)
+    sleep(shacklePause)
     motorTurns(distanceToZero)
     direction = not direction
     sleep(1)
