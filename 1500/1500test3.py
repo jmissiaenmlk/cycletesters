@@ -13,17 +13,17 @@ combo3 = int((input("Enter third combination number ")))
 cycles = int((input("Enter number of cycles ")))
 # these variables control speed of the various functions
 motorSpeed = .0002
-dialPause = .2
+dialPause = .25
 shacklePause = .5
 
 distanceToZero = 40 - combo3
 pulse = False # pulses pin high and low to create a step
 direction = True # true = CW 
-
+failCount = 0
 # setup GPIO pins
 GPIO.setup(19, GPIO.OUT) # step /pulse pin 19
 GPIO.setup(26, GPIO.OUT) # direction pin 26
-GPIO.setup(4, GPIO.IN, pull_up_down = GPIO.PUD_DOWN) # limit switch
+GPIO.setup(4, GPIO.IN, pull_up_down = GPIO.PUD_DOWN) # shackle open switch
 
 def motorTurns(self): # passes info from main loop about combinations into function to turn dial
     GPIO.output(26, direction)
@@ -60,6 +60,11 @@ while cycles > 0:
     sleep(shacklePause)
     RELAY.relayOFF(0,7)
     sleep(shacklePause)
+    if GPIO.input(4) == True:
+        print("Shackle Open")
+    else:
+        print("Shackle Fail")
+        failCount += 1
     RELAY.relayON(0,6) # push shackle closed
     sleep(shacklePause)
     RELAY.relayOFF(0,6)
