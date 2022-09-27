@@ -62,12 +62,11 @@ while cycles > 0:
     sleep(.50)
     RELAY.relayOFF(0,7)
     sleep(1)
-    motorTurns(distanceToZero)
-    sleep(1)
     RELAY.relayON(0,6)
     sleep(.50)
     RELAY.relayOFF(0,6)
     sleep(.50)
+    motorTurns(distanceToZero)
     print("Return to 0")
 
     direction = not direction
