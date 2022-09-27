@@ -2,7 +2,11 @@
 
 from time import sleep
 import RPi.GPIO as GPIO
+import piplates.RELAYplate as RELAY
+
+# setup GPIO mode
 GPIO.setmode(GPIO.BCM)
+
 
 code1 = int((input("Enter first number ")))
 code2 = int((input("Enter second number ")))
@@ -13,16 +17,17 @@ distanceToZero = 40 - code3
 pulse = False # pulses pin high and low to create a step
 direction = True # true = CW 
 
-##  Setting pin modes
+# setup GPIO pins
 GPIO.setup(19, GPIO.OUT) # step /pulse pin 19
 GPIO.setup(26, GPIO.OUT) # direction pin 26
+GPIO.setup(4, GPIO.IN, pull_up_down = GPIO.PUD_DOWN) # limit switch
 
 def motorTurns(pos1):
     GPIO.output(26, direction)
     global pulse, currentPosition
     for i in range(pos1*20):
         GPIO.output(19, pulse)
-        sleep(.001)
+        sleep(.0005)
         pulse = not pulse
     currentPosition = pos1
 
@@ -52,12 +57,19 @@ while cycles > 0:
         print("Code3 < code2")
         sleep(1)
         direction = not direction
-    print("Open shackle")
+    sleep(.50)
+    RELAY.relayON(0,7)
+    sleep(.50)
+    RELAY.relayOFF(0,7)
     sleep(1)
-    print("Close shackle")
-    sleep(1)            
     motorTurns(distanceToZero)
+    sleep(1)
+    RELAY.relayON(0,6)
+    sleep(.50)
+    RELAY.relayOFF(0,6)
+    sleep(.50)
     print("Return to 0")
+
     direction = not direction
     sleep(1)
     cycles -= 1
