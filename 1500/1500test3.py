@@ -63,8 +63,13 @@ while cycles > 0:
     if GPIO.input(4) == True:
         print("Shackle Open")
     else:
-        print("Shackle Fail")
         failCount += 1
+        print("Shackle Fail Count ",failCount)
+        if failCount == 5:
+            print("Shackle Fail Count Too High at: ", failCount)
+            print("Stopped at cycle: ", cycles)
+            break
+
     RELAY.relayON(0,6) # push shackle closed
     sleep(shacklePause)
     RELAY.relayOFF(0,6)
@@ -74,3 +79,5 @@ while cycles > 0:
     sleep(1)
     cycles -= 1
     print("cycles remaining ", cycles)
+
+GPIO.cleanup() # clear GPIO allocations after running program
