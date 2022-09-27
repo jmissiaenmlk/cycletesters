@@ -7,13 +7,12 @@ import piplates.RELAYplate as RELAY
 # setup GPIO mode
 GPIO.setmode(GPIO.BCM)
 
-
-code1 = int((input("Enter first number ")))
-code2 = int((input("Enter second number ")))
-code3 = int((input("Enter third number ")))
+combo1 = int((input("Enter first combination number ")))
+combo2 = int((input("Enter second combination number ")))
+combo3 = int((input("Enter third combination number ")))
 cycles = int((input("Enter number of cycles ")))
-currentPosition = 0
-distanceToZero = 40 - code3
+motorSpeed = .0001
+distanceToZero = 40 - combo3
 pulse = False # pulses pin high and low to create a step
 direction = True # true = CW 
 
@@ -22,53 +21,48 @@ GPIO.setup(19, GPIO.OUT) # step /pulse pin 19
 GPIO.setup(26, GPIO.OUT) # direction pin 26
 GPIO.setup(4, GPIO.IN, pull_up_down = GPIO.PUD_DOWN) # limit switch
 
-def motorTurns(pos1):
+def motorTurns(self): # passes info from main loop about combinations into function to turn dial
     GPIO.output(26, direction)
     global pulse, currentPosition
-    for i in range(pos1*20):
+    for i in range(self*20):
         GPIO.output(19, pulse)
-        sleep(.001)
+        sleep(motorSpeed)
         pulse = not pulse
-    currentPosition = pos1
 
 
 while cycles > 0:
-    motorTurns(80 + (40-code1))
-    print("Code 1")
+    # cycle starts by spinning combo dial 2 rotations before dialing in combo 1
+    motorTurns(80 + (40-combo1))
     sleep(1)
     direction = not direction
-    if code2 > code1:
-        motorTurns(40 + (code2 - code1))
-        print("Code to > code 1")
+    if combo2 > combo1:
+        motorTurns(40 + (combo2 - combo1))
         sleep(1)
         direction = not direction
-    elif code2 < code1:
-        motorTurns(40 + (40 - code1 + code2))
-        print("Code2 < code1")
+    elif combo2 < combo1:
+        motorTurns(40 + (40 - combo1 + combo2))
         sleep(1)
         direction = not direction
-    if code3 > code2:
-        motorTurns(40 - code3 + code2)
-        print("code3 > code2")
+    if combo3 > combo2:
+        motorTurns(40 - combo3 + combo2)
         sleep(1)
         direction = not direction
-    elif code3 < code2:
-        motorTurns(code2 - code3)
-        print("Code3 < code2")
+    elif combo3 < combo2:
+        motorTurns(combo2 - combo3)
         sleep(1)
         direction = not direction
     sleep(.50)
-    RELAY.relayON(0,7)
+    RELAY.relayON(0,7) # pull shackle open
     sleep(.50)
     RELAY.relayOFF(0,7)
-    sleep(1)
-    RELAY.relayON(0,6)
+    sleep(.25)
+    RELAY.relayON(0,6) # push shackle closed
     sleep(.50)
     RELAY.relayOFF(0,6)
-    sleep(.50)
+    sleep(.25)
     motorTurns(distanceToZero)
     print("Return to 0")
-
     direction = not direction
     sleep(1)
     cycles -= 1
+    print("cycles remaining ", cycles)
