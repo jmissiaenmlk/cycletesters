@@ -36,7 +36,7 @@ def motorTurns(self): # passes info from main loop about combinations into funct
 
 while cycles > 0:
     # cycle starts by spinning combo dial 2 rotations before dialing in combo 1
-    motorTurns(80 + (40-combo1))
+    motorTurns(120 + (40-combo1))
     sleep(dialPause)
     direction = not direction
     if combo2 > combo1:
