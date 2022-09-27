@@ -11,7 +11,7 @@ combo1 = int((input("Enter first combination number ")))
 combo2 = int((input("Enter second combination number ")))
 combo3 = int((input("Enter third combination number ")))
 cycles = int((input("Enter number of cycles ")))
-motorSpeed = .0001
+motorSpeed = .0002
 distanceToZero = 40 - combo3
 pulse = False # pulses pin high and low to create a step
 direction = True # true = CW 
@@ -27,7 +27,7 @@ def motorTurns(self): # passes info from main loop about combinations into funct
     for i in range(self*20):
         GPIO.output(19, pulse)
         sleep(motorSpeed)
-        pulse = not pulse
+        pulse = not pulse # changes pulse pin from high to low each time through loop
 
 
 while cycles > 0:
@@ -61,7 +61,6 @@ while cycles > 0:
     RELAY.relayOFF(0,6)
     sleep(.25)
     motorTurns(distanceToZero)
-    print("Return to 0")
     direction = not direction
     sleep(1)
     cycles -= 1
