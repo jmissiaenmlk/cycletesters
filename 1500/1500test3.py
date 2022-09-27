@@ -27,13 +27,13 @@ def motorTurns(pos1):
     global pulse, currentPosition
     for i in range(pos1*20):
         GPIO.output(19, pulse)
-        sleep(.0005)
+        sleep(.001)
         pulse = not pulse
     currentPosition = pos1
 
 
 while cycles > 0:
-    motorTurns(40 + (40-code1))
+    motorTurns(80 + (40-code1))
     print("Code 1")
     sleep(1)
     direction = not direction
