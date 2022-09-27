@@ -22,7 +22,7 @@ def motorTurns(pos1):
     global pulse, currentPosition
     for i in range(pos1*20):
         GPIO.output(19, pulse)
-        sleep(.0004)
+        sleep(.001)
         pulse = not pulse
     currentPosition = pos1
 
