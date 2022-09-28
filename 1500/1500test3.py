@@ -107,6 +107,7 @@ print("Cycles requested: ", cyclesInitial)
 print("Shackle failed to open ", shackleNotOpenCount, " times")
 print("Shackle failed to lock ", shackleNotLockedCount, " times")
 print("Actual complete cycles: ", cyclesInitial - (shackleNotOpenCount + shackleNotLockedCount + cycles))
+print("Cycles remaining when stopped: ", cycles)
 RELAY.relayOFF(0,7)
 RELAY.relayOFF(0,6)
 GPIO.cleanup() # clear GPIO allocations after running program
