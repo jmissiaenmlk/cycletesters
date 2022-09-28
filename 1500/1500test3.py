@@ -86,9 +86,9 @@ while cycles > 0:
     RELAY.relayOFF(0,7)
     sleep(shacklePause)
     if GPIO.input(4) == True:
-        print("Shackle failed to lock")
         shackleNotLockedCount += 1
         cycles += 1
+        print("Shackle failed to lock ", shackleNotLockedCount, " times")
         if shackleNotLockedCount == 5:
             print("Shackle failed to lock ", shackleNotLockedCount, " times")
             print("Cycles remaining when stopped: ", cycles)
@@ -106,7 +106,7 @@ while cycles > 0:
 print("Cycles requested: ", cyclesInitial)
 print("Shackle failed to open ", shackleNotOpenCount, " times")
 print("Shackle failed to lock ", shackleNotLockedCount, " times")
-print("Actual complete cycles: ", cyclesInitial - (shackleNotOpenCount + shackleNotLockedCount + cycles))
+print("Actual complete cycles: ", cyclesInitial - (cycles))
 print("Cycles remaining when stopped: ", cycles)
 RELAY.relayOFF(0,7)
 RELAY.relayOFF(0,6)
