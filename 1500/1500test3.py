@@ -68,9 +68,9 @@ while cycles > 0:
         cycles += 1
         print("Shackle Failed to unlock ",shackleNotOpenCount, " times")
         if shackleNotOpenCount == 5:
-            print("Shackle Failed to unlock threshold met: ", shackleNotOpenCount)
-            print("Cycles remaining when stopped: ", cycles)
-            print("Actual complete cycles: ", cyclesInitial - (shackleNotOpenCount + shackleNotLockedCount + cycles))
+            #print("Shackle Failed to unlock threshold met: ", shackleNotOpenCount)
+            #print("Cycles remaining when stopped: ", cycles)
+            #print("Actual complete cycles: ", cyclesInitial - (shackleNotOpenCount + shackleNotLockedCount + cycles))
             break
 
     RELAY.relayON(0,6) # push shackle closed
@@ -90,9 +90,9 @@ while cycles > 0:
         cycles += 1
         print("Shackle failed to lock ", shackleNotLockedCount, " times")
         if shackleNotLockedCount == 5:
-            print("Shackle failed to lock ", shackleNotLockedCount, " times")
-            print("Cycles remaining when stopped: ", cycles)
-            print("Actual complete cycles: ", cyclesInitial - (shackleNotOpenCount + shackleNotLockedCount + cycles))
+            #print("Shackle failed to lock ", shackleNotLockedCount, " times")
+            #print("Cycles remaining when stopped: ", cycles)
+            #print("Actual complete cycles: ", cyclesInitial - (shackleNotOpenCount + shackleNotLockedCount + cycles))
             break
 
     RELAY.relayON(0,6) # push shackle closed
