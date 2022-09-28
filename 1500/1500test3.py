@@ -99,6 +99,7 @@ while cycles > 0:
 print("Cycles completed: ", cyclesCompleted)
 print("Shackle failed to open ", shackleNotOpenCount, " times")
 print("Shackle failed to lock ", shackleNotLockedCount, " times")
+print("Actual complete cycles: ", cyclesCompleted - shackleNotOpenCount - shackleNotLockedCount)
 RELAY.relayOFF(0,7)
 RELAY.relayOFF(0,6)
 GPIO.cleanup() # clear GPIO allocations after running program
