@@ -16,10 +16,11 @@ motorSpeed = .0003
 dialPause = .25
 shacklePause = .5
 
+cyclesCompleted = cycles
 distanceToZero = 40 - combo3
 pulse = False # pulses pin high and low to create a step
 direction = True # true = CW 
-failCount = 0
+shackleNotOpenCount = 0
 shackleNotLockedCount = 0
 # setup GPIO pins
 GPIO.setup(19, GPIO.OUT) # step /pulse pin 19
@@ -64,10 +65,10 @@ while cycles > 0:
     if GPIO.input(4) == True:
         print("Shackle Open")
     else:
-        failCount += 1
-        print("Shackle Fail Count ",failCount)
-        if failCount == 5:
-            print("Shackle Fail Count Too High at: ", failCount)
+        shackleNotOpenCount += 1
+        print("Shackle Fail Count ",shackleNotOpenCount)
+        if shackleNotOpenCount == 5:
+            print("Shackle Fail Count Too High at: ", shackleNotOpenCount)
             print("Cycles remaining when stopped: ", cycles - 5)
             break
 
@@ -95,6 +96,9 @@ while cycles > 0:
     cycles -= 1
     print("cycles remaining ", cycles)
 
+print("Cycles completed: ", cyclesCompleted)
+print("Shackle failed to open ", shackleNotOpenCount, " times")
+print("Shackle failed to lock ", shackleNotLockedCount, " times")
 RELAY.relayOFF(0,7)
 RELAY.relayOFF(0,6)
 GPIO.cleanup() # clear GPIO allocations after running program
