@@ -12,9 +12,9 @@ combo2 = int((input("Enter second combination number ")))
 combo3 = int((input("Enter third combination number ")))
 cycles = int((input("Enter number of cycles ")))
 # these variables control speed of the various functions
-motorSpeed = .0005
-dialPause = .25
-shacklePause = .5
+motorSpeed = .0004
+dialPause = .2
+shacklePause = .4
 
 cyclesInitial = cycles # keeps original cycle count
 distanceToZero = 40 - combo3
@@ -96,9 +96,8 @@ while cycles > 0:
     RELAY.relayON(0,6) # push shackle closed
     sleep(shacklePause)
     RELAY.relayOFF(0,6)
-    motorTurns(distanceToZero)
     direction = not direction
-    sleep(1)
+    sleep(.1)
     cycles -= 1
     print("cycles remaining ", cycles)
 
