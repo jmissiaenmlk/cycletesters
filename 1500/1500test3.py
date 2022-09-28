@@ -14,7 +14,7 @@ cycles = int((input("Enter number of cycles ")))
 # these variables control speed of the various functions
 motorSpeed = .0004
 dialPause = .2
-shacklePause = .4
+shacklePause = .3
 
 cyclesInitial = cycles # keeps original cycle count
 distanceToZero = 40 - combo3
@@ -65,6 +65,7 @@ while cycles > 0:
 
     if GPIO.input(4) == False: # checks to see if shackle opened
         shackleNotOpenCount += 1
+        cycles += 1
         print("Shackle Failed to unlock ",shackleNotOpenCount, " times")
         if shackleNotOpenCount == 5:
             print("Shackle Failed to unlock threshold met: ", shackleNotOpenCount)
@@ -87,6 +88,7 @@ while cycles > 0:
     if GPIO.input(4) == True:
         print("Shackle failed to lock")
         shackleNotLockedCount += 1
+        cycles += 1
         if shackleNotLockedCount == 5:
             print("Shackle failed to lock ", shackleNotLockedCount, " times")
             print("Cycles remaining when stopped: ", cycles)
