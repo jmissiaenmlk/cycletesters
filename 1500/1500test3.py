@@ -12,7 +12,7 @@ combo2 = int((input("Enter second combination number ")))
 combo3 = int((input("Enter third combination number ")))
 cycles = int((input("Enter number of cycles ")))
 # these variables control speed of the various functions
-motorSpeed = .0003
+motorSpeed = .0005
 dialPause = .25
 shacklePause = .5
 
@@ -62,14 +62,14 @@ while cycles > 0:
     sleep(shacklePause)
     RELAY.relayOFF(0,7)
     sleep(shacklePause)
-    if GPIO.input(4) == True:
-        print("Shackle Open")
-    else:
+
+    if GPIO.input(4) == False: # checks to see if shackle opened
         shackleNotOpenCount += 1
         print("Shackle Fail Count ",shackleNotOpenCount)
         if shackleNotOpenCount == 5:
             print("Shackle Fail Count Too High at: ", shackleNotOpenCount)
-            print("Cycles remaining when stopped: ", cycles - 5)
+            print("Cycles remaining when stopped: ", cycles)
+            print("Actual complete cycles: ", cyclesCompleted - shackleNotOpenCount - shackleNotLockedCount)
             break
 
     RELAY.relayON(0,6) # push shackle closed
@@ -86,7 +86,9 @@ while cycles > 0:
         if shackleNotLockedCount == 5:
             print("Shackle failed to lock 5 times")
             print("Cycles remaining when stopped: ", cycles)
+            print("Actual complete cycles: ", cyclesCompleted - shackleNotOpenCount - shackleNotLockedCount)
             break
+        
     RELAY.relayON(0,6) # push shackle closed
     sleep(shacklePause)
     RELAY.relayOFF(0,6)
@@ -96,7 +98,7 @@ while cycles > 0:
     cycles -= 1
     print("cycles remaining ", cycles)
 
-print("Cycles completed: ", cyclesCompleted)
+print("Cycles requested: ", cyclesCompleted)
 print("Shackle failed to open ", shackleNotOpenCount, " times")
 print("Shackle failed to lock ", shackleNotLockedCount, " times")
 print("Actual complete cycles: ", cyclesCompleted - shackleNotOpenCount - shackleNotLockedCount)
