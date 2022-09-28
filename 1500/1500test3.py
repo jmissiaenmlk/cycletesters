@@ -12,7 +12,7 @@ combo2 = int((input("Enter second combination number ")))
 combo3 = int((input("Enter third combination number ")))
 cycles = int((input("Enter number of cycles ")))
 # these variables control speed of the various functions
-motorSpeed = .0002
+motorSpeed = .0003
 dialPause = .25
 shacklePause = .5
 
@@ -86,10 +86,15 @@ while cycles > 0:
             print("Shackle failed to lock 5 times")
             print("Cycles remaining when stopped: ", cycles)
             break
+    RELAY.relayON(0,6) # push shackle closed
+    sleep(shacklePause)
+    RELAY.relayOFF(0,6)
     motorTurns(distanceToZero)
     direction = not direction
     sleep(1)
     cycles -= 1
     print("cycles remaining ", cycles)
 
+RELAY.relayOFF(0,7)
+RELAY.relayOFF(0,6)
 GPIO.cleanup() # clear GPIO allocations after running program
