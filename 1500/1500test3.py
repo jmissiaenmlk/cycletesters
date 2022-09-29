@@ -14,7 +14,7 @@ cycles = int((input("Enter number of cycles ")))
 ##################### these variables control speed of the various functions
 motorSpeed = .0004  #
 dialPause = .2      #
-shacklePause = .3   #
+shacklePause = .35   #
 #####################
 cyclesInitial = cycles # keeps original cycle count
 distanceToZero = 40 - combo3
@@ -75,7 +75,6 @@ while cycles > 0:
     RELAY.relayOFF(0,5)
     sleep(shacklePause)
     sleep(shacklePause)
-    sleep(shacklePause)
     motorTurns(distanceToZero) # spins dial back to 0 to keep position info
     direction = not direction
     motorTurns(40)
@@ -94,6 +93,8 @@ while cycles > 0:
     RELAY.relayON(0,5) # push shackle closed
     sleep(shacklePause)
     RELAY.relayOFF(0,5)
+    sleep(shacklePause)
+    sleep(shacklePause)
     direction = not direction
     sleep(.1)
     cycles -= 1
