@@ -11,11 +11,11 @@ combo1 = int((input("Enter first combination number ")))
 combo2 = int((input("Enter second combination number ")))
 combo3 = int((input("Enter third combination number ")))
 cycles = int((input("Enter number of cycles ")))
-# these variables control speed of the various functions
-motorSpeed = .0004
-dialPause = .2
-shacklePause = .3
-
+##################### these variables control speed of the various functions
+motorSpeed = .0004  #
+dialPause = .2      #
+shacklePause = .3   #
+#####################
 cyclesInitial = cycles # keeps original cycle count
 distanceToZero = 40 - combo3
 pulse = False # pulses pin high and low to create a step
@@ -67,15 +67,12 @@ while cycles > 0:
         shackleNotOpenCount += 1
         cycles += 1
         print("Shackle Failed to unlock ",shackleNotOpenCount, " times")
-        if shackleNotOpenCount == 5:
-            #print("Shackle Failed to unlock threshold met: ", shackleNotOpenCount)
-            #print("Cycles remaining when stopped: ", cycles)
-            #print("Actual complete cycles: ", cyclesInitial - (shackleNotOpenCount + shackleNotLockedCount + cycles))
+        if shackleNotOpenCount == 25:
             break
 
-    RELAY.relayON(0,6) # push shackle closed
+    RELAY.relayON(0,5) # push shackle closed
     sleep(shacklePause)
-    RELAY.relayOFF(0,6)
+    RELAY.relayOFF(0,5)
     sleep(shacklePause)
     motorTurns(distanceToZero)
     direction = not direction
@@ -89,15 +86,12 @@ while cycles > 0:
         shackleNotLockedCount += 1
         cycles += 1
         print("Shackle failed to lock ", shackleNotLockedCount, " times")
-        if shackleNotLockedCount == 5:
-            #print("Shackle failed to lock ", shackleNotLockedCount, " times")
-            #print("Cycles remaining when stopped: ", cycles)
-            #print("Actual complete cycles: ", cyclesInitial - (shackleNotOpenCount + shackleNotLockedCount + cycles))
+        if shackleNotLockedCount == 25:
             break
 
-    RELAY.relayON(0,6) # push shackle closed
+    RELAY.relayON(0,5) # push shackle closed
     sleep(shacklePause)
-    RELAY.relayOFF(0,6)
+    RELAY.relayOFF(0,5)
     direction = not direction
     sleep(.1)
     cycles -= 1
@@ -109,5 +103,5 @@ print("Shackle failed to lock ", shackleNotLockedCount, " times")
 print("Actual complete cycles: ", cyclesInitial - (cycles))
 print("Cycles remaining when stopped: ", cycles)
 RELAY.relayOFF(0,7)
-RELAY.relayOFF(0,6)
+RELAY.relayOFF(0,5)
 GPIO.cleanup() # clear GPIO allocations after running program
