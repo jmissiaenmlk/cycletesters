@@ -58,7 +58,7 @@ while cycles > 0:
         sleep(dialPause)
         direction = not direction
     sleep(shacklePause)
-    RELAY.relayON(0,7) # pull shackle open
+    RELAY.relayON(0,7) # pull shackle open / unlock shackle
     sleep(shacklePause)
     RELAY.relayOFF(0,7)
     sleep(shacklePause)
@@ -70,14 +70,16 @@ while cycles > 0:
         if shackleNotOpenCount == 25:
             break
 
-    RELAY.relayON(0,5) # push shackle closed
+    RELAY.relayON(0,5) # push shackle closed / lock shackle
     sleep(shacklePause)
     RELAY.relayOFF(0,5)
     sleep(shacklePause)
-    motorTurns(distanceToZero)
+    sleep(shacklePause)
+    sleep(shacklePause)
+    motorTurns(distanceToZero) # spins dial back to 0 to keep position info
     direction = not direction
     motorTurns(40)
-    direction = not direction
+    direction = not direction # spins dial around to make sure combo is scrambled
     RELAY.relayON(0,7) # pull shackle open to test if it locked correctly
     sleep(shacklePause)
     RELAY.relayOFF(0,7)
