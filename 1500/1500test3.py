@@ -79,6 +79,7 @@ while cycles > 0:
     direction = not direction
     motorTurns(40)
     direction = not direction # spins dial around to make sure combo is scrambled
+    sleep(shacklePause)
     RELAY.relayON(0,7) # pull shackle open to test if it locked correctly
     sleep(shacklePause)
     RELAY.relayOFF(0,7)
