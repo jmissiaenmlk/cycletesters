@@ -1,3 +1,4 @@
+#!/usr/bin/python
 # JJM 9/27/2021 for 1500 combo lock cycle tester
 
 from time import sleep
