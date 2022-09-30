@@ -1,5 +1,5 @@
 # JJM 9/27/2021 for 1500 combo lock cycle tester
-# use this line at the top of the code to run  in terminal #!/usr/bin/python
+# use this line at the top of the code to run  in terminal #!/usr/bin/python -i
 
 from time import sleep
 import RPi.GPIO as GPIO
@@ -110,3 +110,6 @@ print("Cycles remaining when stopped: ", cycles)
 RELAY.relayOFF(0,7)
 RELAY.relayOFF(0,5)
 GPIO.cleanup() # clear GPIO allocations after running program
+
+input("End of cycle. Press Enter")
+input("Press enter to exit")
