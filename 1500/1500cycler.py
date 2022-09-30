@@ -1,5 +1,5 @@
-#!/usr/bin/python
 # JJM 9/27/2021 for 1500 combo lock cycle tester
+# use this line at the top of the code to run  in terminal #!/usr/bin/python
 
 from time import sleep
 import RPi.GPIO as GPIO
