@@ -37,6 +37,7 @@ distanceToZero = 40 - combo3
 pulse = False # pulses pin high and low to create a step
 direction = True # true = CW 
 shackle_not_open_count = 0
+shackle_not_open_helper = 0
 shackle_not_locked_count = 0
 shackle_failed_open = 0
 ### ----------------- ###
@@ -99,23 +100,25 @@ def pull_shackle_open():
 
 # checks to see if shackle opened and will pull the shackle again if it didn't open on the 1st try
 def shackle_open_check():
-    global shackle_not_open_count, direction
-    if shackle_not_open_count == 2:
+    global shackle_not_open_count,shackle_not_open_helper, direction
+    if shackle_not_open_count == 25:
         print("erorr with shackle not opening")
         program_end()
-    elif shackle_not_open_count == 4:
+    elif shackle_not_open_helper == 4:
         push_shackle_closed()
         motor_turns(distanceToZero) # spins dial back to 0 to keep position info
         direction = not direction
-        shackle_not_open_count = 0
+        shackle_not_open_helper = 0
         program_start()
     elif GPIO.input(open_switch) == False: # checks to see if shackle opened
         shackle_not_open_count += 1
+        shackle_not_open_helper += 1
         print("Shackle Failed to unlock ",shackle_not_open_count, " times")
         pull_shackle_open()
         shackle_open_check()
     elif GPIO.input(open_switch) == True: # checks to see if shackle opened
         print("Shackle Opened")
+
 
 # push shackle closed / lock shackle
 def push_shackle_closed():
@@ -150,6 +153,9 @@ while cycles > 0:
     shackle_open_check()
 
     push_shackle_closed()
+
+    if GPIO.input(close_switch) == False:
+        push_shackle_closed()
 
     sleep(shacklePause)
     motor_turns(distanceToZero) # spins dial back to 0 to keep position info
