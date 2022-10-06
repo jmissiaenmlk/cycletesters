@@ -100,8 +100,9 @@ def pull_shackle_open():
 # checks to see if shackle opened and will pull the shackle again if it didn't open on the 1st try
 def shackle_open_check():
     global shackle_not_open_count, direction
-    if GPIO.input(open_switch) == True: # checks to see if shackle opened
-        print("Shackle Opened")
+    if shackle_not_open_count == 2:
+        print("erorr with shackle not opening")
+        program_end()
     elif shackle_not_open_count == 4:
         push_shackle_closed()
         motor_turns(distanceToZero) # spins dial back to 0 to keep position info
@@ -113,9 +114,8 @@ def shackle_open_check():
         print("Shackle Failed to unlock ",shackle_not_open_count, " times")
         pull_shackle_open()
         shackle_open_check()
-    elif shackle_not_open_count == 2:
-        print("erorr with shackle not opening")
-        program_end()
+    elif GPIO.input(open_switch) == True: # checks to see if shackle opened
+        print("Shackle Opened")
 
 # push shackle closed / lock shackle
 def push_shackle_closed():
