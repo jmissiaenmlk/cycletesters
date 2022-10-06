@@ -155,7 +155,7 @@ def shackle_lock_check():
         program_end()
 
 def main():
-    global cycles
+    global cycles, direction
     while cycles > 0:
         # cycle starts by spinning combo dial 2 rotations before dialing in combo 1
         program_start()
