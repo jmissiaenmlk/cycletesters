@@ -101,7 +101,7 @@ def pull_shackle_open():
 # checks to see if shackle opened and will pull the shackle again if it didn't open on the 1st try
 def shackle_open_check():
     global shackle_not_open_count,shackle_not_open_helper, direction
-    if shackle_not_open_count == 25:
+    if shackle_not_open_count >= 25:
         print("erorr with shackle not opening")
         program_end()
     elif shackle_not_open_helper == 4:
