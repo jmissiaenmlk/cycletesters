@@ -1,4 +1,4 @@
-# JJM 10/5/2022 for 1500 combo lock cycle tester
+# JJM 10/6/2022 for 1500 combo lock cycle tester
 # use this line at the top of the code to run  in terminal #!/usr/bin/python -i
 
 from time import sleep
