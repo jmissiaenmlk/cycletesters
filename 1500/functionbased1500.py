@@ -86,6 +86,7 @@ def program_end():
     print("Cycles requested: ", cyclesInitial)
     print("Shackle failed to open ", shackle_not_open_count, " times")
     print("Shackle failed to lock ", shackle_not_locked_count, " times")
+    print("Shackle failed to close ", shackle_not_closed_count, " times")
     print("Actual complete cycles: ", cyclesInitial - (cycles))
     print("Cycles remaining when stopped: ", cycles)
     RELAY.relayOFF(0,unlock_shackle_pin)
