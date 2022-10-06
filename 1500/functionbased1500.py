@@ -39,6 +39,7 @@ direction = True # true = CW
 shackle_not_open_count = 0
 shackle_not_open_helper = 0
 shackle_not_locked_count = 0
+shackle_not_closed_count = 0
 shackle_failed_open = 0
 ### ----------------- ###
 
@@ -125,10 +126,17 @@ def shackle_open_check():
 
 # push shackle closed / lock shackle
 def push_shackle_closed():
+    global shackle_not_closed_count
     RELAY.relayON(0,lock_shackle_pin)
     sleep(shacklePause)
     RELAY.relayOFF(0,lock_shackle_pin)
-    sleep(shacklePause)        
+    sleep(shacklePause)
+    if shackle_not_closed_count >= 25:
+        print("erorr with shackle not closing")
+        program_end()
+    elif GPIO.input(close_switch) == False:
+        shackle_not_closed_count += 1
+        push_shackle_closed()      
 
 # pull shackle open to test if it locked correctly
 def shackle_lock_check():
@@ -156,9 +164,6 @@ while cycles > 0:
     shackle_open_check()
 
     push_shackle_closed()
-
-    if GPIO.input(close_switch) == False:
-        push_shackle_closed()
 
     sleep(shacklePause)
     motor_turns(distanceToZero) # spins dial back to 0 to keep position info
