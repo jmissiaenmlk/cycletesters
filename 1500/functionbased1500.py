@@ -12,12 +12,12 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(19, GPIO.OUT) # step /pulse pin 19
 GPIO.setup(26, GPIO.OUT) # direction pin 26
 GPIO.setup(4, GPIO.IN, pull_up_down = GPIO.PUD_DOWN) # shackle open switch
-GPIO.setup(5, GPIO.IN, pull_up_down = GPIO.PUD_DOWN) # shackle close switch
+GPIO.setup(27, GPIO.IN, pull_up_down = GPIO.PUD_DOWN) # shackle close switch
 ### --------------- ###
 
 ### IO pin variables ###
 open_switch = 4 # input pin
-close_switch = 5 # input pin
+close_switch = 27 # input pin
 lock_shackle_pin = 5 # output pin
 unlock_shackle_pin = 7 # output pin
 direction_pin = 26 # output pin that controls motor direction
@@ -102,7 +102,7 @@ def shackle_open_check():
     global shackle_not_open_count, direction
     if GPIO.input(open_switch) == True: # checks to see if shackle opened
         print("Shackle Opened")
-    elif shackle_not_open_count == 2:
+    elif shackle_not_open_count == 3:
         push_shackle_closed()
         motor_turns(distanceToZero) # spins dial back to 0 to keep position info
         direction = not direction
@@ -113,7 +113,7 @@ def shackle_open_check():
         print("Shackle Failed to unlock ",shackle_not_open_count, " times")
         pull_shackle_open()
         shackle_open_check()
-    elif shackle_not_open_count == 25:
+    elif shackle_not_open_count == 2:
         print("erorr with shackle not opening")
         program_end()
 
