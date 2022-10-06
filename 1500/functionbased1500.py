@@ -102,7 +102,7 @@ def shackle_open_check():
     global shackle_not_open_count, direction
     if GPIO.input(open_switch) == True: # checks to see if shackle opened
         print("Shackle Opened")
-    elif shackle_not_open_count == 3:
+    elif shackle_not_open_count == 4:
         push_shackle_closed()
         motor_turns(distanceToZero) # spins dial back to 0 to keep position info
         direction = not direction
