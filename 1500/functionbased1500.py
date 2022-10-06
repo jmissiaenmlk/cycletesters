@@ -111,8 +111,8 @@ def shackle_open_check():
         print("Shackle helper ",shackle_not_open_helper, " times")
         program_start()
         pull_shackle_open()
-        shackle_open_check()
         shackle_not_open_helper = 0
+        shackle_open_check()
     elif GPIO.input(open_switch) == False: # checks to see if shackle opened
         shackle_not_open_count += 1
         shackle_not_open_helper += 1
