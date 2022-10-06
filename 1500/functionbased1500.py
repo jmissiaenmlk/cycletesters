@@ -154,37 +154,42 @@ def shackle_lock_check():
         print("erorr with shackle not locking")
         program_end()
 
-while cycles > 0:
-    # cycle starts by spinning combo dial 2 rotations before dialing in combo 1
-    program_start()
+def main():
 
-    sleep(shacklePause)
+    while cycles > 0:
+        # cycle starts by spinning combo dial 2 rotations before dialing in combo 1
+        program_start()
 
-    pull_shackle_open()
+        sleep(shacklePause)
 
-    shackle_open_check()
+        pull_shackle_open()
 
-    push_shackle_closed()
+        shackle_open_check()
 
-    sleep(shacklePause)
-    motor_turns(distanceToZero) # spins dial back to 0 to keep position info
-    direction = not direction
-    
-    motor_turns(40)
-    direction = not direction # spins dial around to make sure combo is scrambled
-    sleep(shacklePause)
+        push_shackle_closed()
 
-    shackle_lock_check()
+        sleep(shacklePause)
+        motor_turns(distanceToZero) # spins dial back to 0 to keep position info
+        direction = not direction
+        
+        motor_turns(40)
+        direction = not direction # spins dial around to make sure combo is scrambled
+        sleep(shacklePause)
 
-    push_shackle_closed()
+        shackle_lock_check()
 
-    sleep(shacklePause)
-    direction = not direction
-    sleep(.1)
-    cycles -= 1
-    print("cycles remaining ", cycles)
+        push_shackle_closed()
 
-program_end()
+        sleep(shacklePause)
+        direction = not direction
+        sleep(.1)
+        cycles -= 1
+        print("cycles remaining ", cycles)
 
-input("End of cycle. Press Enter")
-input("Press enter to exit")
+    program_end()
+
+    input("End of cycle. Press Enter")
+    input("Press enter to exit")
+
+if __name__ == '__main__':
+    main()
