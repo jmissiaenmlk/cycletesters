@@ -57,6 +57,7 @@ def motor_turns(x):
         pulse = not pulse # changes pulse pin from high to low each time through loop
 
 def program_start():
+    global direction
     motor_turns(120 + (40-combo1))
     sleep(dialPause)
     direction = not direction
