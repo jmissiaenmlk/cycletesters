@@ -91,7 +91,7 @@ def program_end():
     print("Cycles remaining when stopped: ", cycles)
     RELAY.relayOFF(0,unlock_shackle_pin)
     RELAY.relayOFF(0,lock_shackle_pin)
-    GPIO.cleanup() # clear GPIO allocations after running program
+    
 
 # pulls shackle open
 def pull_shackle_open():
@@ -103,7 +103,7 @@ def pull_shackle_open():
 # checks to see if shackle opened and will pull the shackle again if it didn't open on the 1st try
 def shackle_open_check():
     global shackle_not_open_count,shackle_not_open_helper, direction
-    if shackle_not_open_count >= 20:
+    if shackle_not_open_count >= 25:
         print("erorr with shackle not opening")
         program_end()
     elif shackle_not_open_helper == 4:
@@ -122,7 +122,8 @@ def shackle_open_check():
         pull_shackle_open()
         shackle_open_check()
     elif GPIO.input(open_switch) == True: # checks to see if shackle opened
-        print("Shackle Opened")
+        # print("Shackle Opened")
+        return ("shackle opened")
 
 
 # push shackle closed / lock shackle
@@ -193,3 +194,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+GPIO.cleanup() # clear GPIO allocations after running program
