@@ -97,6 +97,7 @@ def program_end():
 
 # pulls shackle open
 def pull_shackle_open():
+    RELAY.relayOFF(0,lock_shackle_pin) # makes sure lock shackle relay is off
     RELAY.relayON(0,unlock_shackle_pin) # pull shackle open / unlock shackle
     sleep(shacklePause)
     RELAY.relayOFF(0,unlock_shackle_pin)
@@ -131,6 +132,7 @@ def shackle_open_check():
 # push shackle closed / lock shackle
 def push_shackle_closed():
     global shackle_not_closed_count
+    RELAY.relayOFF(0,unlock_shackle_pin) # makes sure unlock shackle relay is off
     RELAY.relayON(0,lock_shackle_pin)
     sleep(shacklePause)
     RELAY.relayOFF(0,lock_shackle_pin)
