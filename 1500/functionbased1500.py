@@ -52,6 +52,10 @@ shacklePause = .35    #
 # passes info from main loop about combinations into function to turn dial
 def motor_turns(x): 
     GPIO.output(direction_pin, direction)
+    RELAY.relayON(0,lock_shackle_pin)
+    sleep(shacklePause)
+    sleep(shacklePause)
+    RELAY.relayOFF(0,lock_shackle_pin)
     global pulse
     for i in range(x*20):
         GPIO.output(pulse_pin, pulse)
