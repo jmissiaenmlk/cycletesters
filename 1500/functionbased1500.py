@@ -91,6 +91,8 @@ def program_end():
     print("Cycles remaining when stopped: ", cycles)
     RELAY.relayOFF(0,unlock_shackle_pin)
     RELAY.relayOFF(0,lock_shackle_pin)
+    input("Press enter to exit")
+    exit()
     
 
 # pulls shackle open
