@@ -141,7 +141,7 @@ def push_shackle_closed():
 
 # pull shackle open to test if it locked correctly
 def shackle_lock_check():
-    global shackle_not_locked_count
+    global cycles, shackle_not_locked_count
     RELAY.relayON(0,unlock_shackle_pin)
     sleep(shacklePause)
     RELAY.relayOFF(0,unlock_shackle_pin)
