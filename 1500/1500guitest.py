@@ -51,14 +51,14 @@ def clicked():
     res = "Cycles remaining: " + cyclestxt.get()
     currentinfo.configure(text= res)
 
-start = Button(window, text="Start", command=program_start, width=10)
-start.grid(column=0, row=4)
+# start = Button(window, text="Start", command=program_start, width=10)
+# start.grid(column=0, row=4)
 
-stop = Button(window, text="Stop", command=program_end, width=10)
-stop.grid(column=1, row=4)
+# stop = Button(window, text="Stop", command=program_end, width=10)
+# stop.grid(column=1, row=4)
 
-relaysoff = Button(window, text="Relays Off", command=clicked, width=10)
-relaysoff.grid(column=0, row=5)
+# relaysoff = Button(window, text="Relays Off", command=clicked, width=10)
+# relaysoff.grid(column=0, row=5)
 
 #window.mainloop()
 
