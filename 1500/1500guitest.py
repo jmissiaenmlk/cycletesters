@@ -51,16 +51,16 @@ def clicked():
     res = "Cycles remaining: " + cyclestxt.get()
     currentinfo.configure(text= res)
 
-start = Button(window, text="Start", command=clicked, width=10)
+start = Button(window, text="Start", command=program_start, width=10)
 start.grid(column=0, row=4)
 
-stop = Button(window, text="Stop", command=clicked, width=10)
+stop = Button(window, text="Stop", command=program_end, width=10)
 stop.grid(column=1, row=4)
 
 relaysoff = Button(window, text="Relays Off", command=clicked, width=10)
 relaysoff.grid(column=0, row=5)
 
-window.mainloop()
+#window.mainloop()
 
 ### IO pin variables ###
 open_switch = 4 # input pin
@@ -219,6 +219,14 @@ def shackle_lock_check():
         print("erorr with shackle not locking")
         program_end()
 
+start = Button(window, text="Start", command=mainloop, width=10)
+start.grid(column=0, row=4)
+
+stop = Button(window, text="Stop", command=program_end, width=10)
+stop.grid(column=1, row=4)
+
+relaysoff = Button(window, text="Relays Off", command=clicked, width=10)
+relaysoff.grid(column=0, row=5)
 def main():
     global cycles, direction
     while cycles > 0:
@@ -262,3 +270,4 @@ def main():
 if __name__ == '__main__':
     main()
 GPIO.cleanup() # clear GPIO allocations after running program
+window.mainloop()
