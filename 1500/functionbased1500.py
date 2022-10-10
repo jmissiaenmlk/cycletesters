@@ -177,15 +177,17 @@ def main():
 
         push_shackle_closed()
 
+        shackle_lock_check()
+        
         sleep(shacklePause)
         motor_turns(distanceToZero) # spins dial back to 0 to keep position info
         direction = not direction
         
-        motor_turns(40)
-        direction = not direction # spins dial around to make sure combo is scrambled
-        sleep(shacklePause)
+        #motor_turns(40)
+        #direction = not direction # spins dial around to make sure combo is scrambled
+        #sleep(shacklePause)
 
-        shackle_lock_check()
+        #shackle_lock_check()
 
         push_shackle_closed()
 
