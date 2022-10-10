@@ -178,7 +178,7 @@ def main():
         push_shackle_closed()
 
         shackle_lock_check()
-        
+
         sleep(shacklePause)
         motor_turns(distanceToZero) # spins dial back to 0 to keep position info
         direction = not direction
@@ -192,7 +192,7 @@ def main():
         push_shackle_closed()
 
         sleep(shacklePause)
-        direction = not direction
+        #direction = not direction
         sleep(.1)
         cycles -= 1
         print("cycles remaining ", cycles)
