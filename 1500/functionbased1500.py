@@ -107,6 +107,10 @@ def pull_shackle_open():
     sleep(short_pause)
     RELAY.relayOFF(0,unlock_shackle_pin)
     sleep(short_pause)
+    RELAY.relayON(0,lock_shackle_pin) # pull shackle open / unlock shackle
+    sleep(.01)
+    RELAY.relayOFF(0,lock_shackle_pin)
+    sleep(.01)
     RELAY.relayON(0,unlock_shackle_pin) # pull shackle open / unlock shackle
     sleep(shacklePause)
     RELAY.relayOFF(0,unlock_shackle_pin)
