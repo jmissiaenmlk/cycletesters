@@ -46,7 +46,8 @@ shackle_failed_open = 0
 ### these variables control speed of the various functions ###
 motorSpeed = .0004    #
 dialPause = .2        #
-shacklePause = .35    #
+shacklePause = .35    # 
+short_pause = .1      #
 ### --------------- ###
 
 # passes info from main loop about combinations into function to turn dial
@@ -102,6 +103,10 @@ def program_end():
 # pulls shackle open
 def pull_shackle_open():
     RELAY.relayOFF(0,lock_shackle_pin) # makes sure lock shackle relay is off
+    RELAY.relayON(0,unlock_shackle_pin) # pull shackle open / unlock shackle
+    sleep(short_pause)
+    RELAY.relayOFF(0,unlock_shackle_pin)
+    sleep(short_pause)
     RELAY.relayON(0,unlock_shackle_pin) # pull shackle open / unlock shackle
     sleep(shacklePause)
     RELAY.relayOFF(0,unlock_shackle_pin)
@@ -165,6 +170,11 @@ def shackle_lock_check():
 
 def main():
     global cycles, direction
+    RELAY.relayOFF(0,1)
+    RELAY.relayOFF(0,2)
+    RELAY.relayOFF(0,3)
+    RELAY.relayOFF(0,4)
+    RELAY.relayOFF(0,6)
     while cycles > 0:
         # cycle starts by spinning combo dial 2 rotations before dialing in combo 1
         program_start()

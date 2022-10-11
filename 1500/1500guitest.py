@@ -60,7 +60,7 @@ def clicked():
 # relaysoff = Button(window, text="Relays Off", command=clicked, width=10)
 # relaysoff.grid(column=0, row=5)
 
-#window.mainloop()
+# window.mainloop()
 
 ### IO pin variables ###
 open_switch = 4 # input pin
