@@ -108,7 +108,7 @@ def pull_shackle_open():
     RELAY.relayOFF(0,unlock_shackle_pin)
     sleep(short_pause)
     RELAY.relayON(0,lock_shackle_pin) # pull shackle open / unlock shackle
-    sleep(.01)
+    sleep(.05)
     RELAY.relayOFF(0,lock_shackle_pin)
     sleep(.01)
     RELAY.relayON(0,unlock_shackle_pin) # pull shackle open / unlock shackle
@@ -119,7 +119,7 @@ def pull_shackle_open():
 # checks to see if shackle opened and will pull the shackle again if it didn't open on the 1st try
 def shackle_open_check():
     global shackle_not_open_count,shackle_not_open_helper, direction
-    if shackle_not_open_count >= 25:
+    if shackle_not_open_count >= 250:
         print("erorr with shackle not opening")
         program_end()
     elif shackle_not_open_helper == 4:
@@ -174,12 +174,12 @@ def shackle_lock_check():
 
 def main():
     global cycles, direction
-    RELAY.relayOFF(0,1)
-    RELAY.relayOFF(0,2)
-    RELAY.relayOFF(0,3)
-    RELAY.relayOFF(0,4)
-    RELAY.relayOFF(0,6)
     while cycles > 0:
+        RELAY.relayOFF(0,1)
+        RELAY.relayOFF(0,2)
+        RELAY.relayOFF(0,3)
+        RELAY.relayOFF(0,4)
+        RELAY.relayOFF(0,6)
         # cycle starts by spinning combo dial 2 rotations before dialing in combo 1
         program_start()
 

@@ -32,28 +32,35 @@ cyclestxt.grid(column=1, row=3)
 currentinfo = Label(window, text=" ")
 currentinfo.grid(column=0, row=6)
 
+global comboprint
 comboprint = Label(window, text=" ")
 comboprint.grid(column=0, row=7)
 
+cyclesint = 5
+
 def start():
-    global cycles, cyclesint, bike
-    res = "Cycles remaining: "
+    global cycles, cyclesint
+    res = "Cycles Remaining: " + str(cyclesint)
     currentinfo.configure(text= res)
-    cycles = cyclestxt.get
+    #cycles = cyclestxt.get
     cyclesint= int(cyclestxt.get())
-    bike = cyclesint
     main()
 
+def tothetop():
+    main()
+
+#cyclesint= int(cyclestxt.get())
 
 def passing():
-    global incombo1, incomboall, blah
+    global incombo1, incomboall, blah, cyclesint
     incombo1 = combo1txt.get()
     incombo2 = combo2txt.get()
     incombo3 = combo3txt.get()
     incomboall = incombo1 + " / " + incombo2 + " / " + incombo3
-    blah = "combo entered was : " + incomboall
+    blah = "cycles remaining : " + str(cyclesint)
     comboprint.configure(text = blah)
-    print(blah)
+    #print(blah)
+    sleep(.1)
 
 start = Button(window, text="Start", command=start, width=10)
 start.grid(column=0, row=4)
@@ -63,15 +70,21 @@ stop.grid(column=1, row=4)
 
 relaysoff = Button(window, text="Relays Off", command=passing, width=10)
 relaysoff.grid(column=0, row=5)
-
+window.mainloop()
 def main():
     global cycles, cyclesint, bike
-    while cyclesint > 0:
+    bike = cyclesint
+    if cyclesint > 5:
         #print(blah)
         #print(bike)
         #bike -= 1
+        blah = "cycles remaining : " + str(cyclesint)
+        comboprint.configure(text = blah)
+        #passing()
         print(cyclesint)
         cyclesint -= 1
         sleep(.1)
+        tothetop()
+    print("bike was :", bike)        
 
-window.mainloop()
+#window.mainloop()
