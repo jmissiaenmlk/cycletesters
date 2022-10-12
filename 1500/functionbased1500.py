@@ -126,7 +126,7 @@ def shackle_open_check():
         push_shackle_closed()
         motor_turns(distanceToZero) # spins dial back to 0 to keep position info
         direction = not direction
-        print("Shackle helper ",shackle_not_open_helper, " times")
+        print("Redial Combo")
         program_start()
         pull_shackle_open()
         shackle_not_open_helper = 0
@@ -134,7 +134,7 @@ def shackle_open_check():
     elif GPIO.input(open_switch) == False: # checks to see if shackle opened
         shackle_not_open_count += 1
         shackle_not_open_helper += 1
-        print("Shackle Failed to unlock ",shackle_not_open_count, " times")
+        #print("Shackle Failed to unlock ",shackle_not_open_count, " times")
         pull_shackle_open()
         shackle_open_check()
     elif GPIO.input(open_switch) == True: # checks to see if shackle opened

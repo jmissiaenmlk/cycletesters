@@ -1,5 +1,6 @@
 from tkinter import *
 from time import sleep
+import threading
 
 window = Tk()
 window.title("1500 Cycle Tester")
@@ -27,6 +28,7 @@ cycles = Label(window, text="Number of Cycles")
 cycles.grid(column=0, row=3)
 
 cyclestxt = Entry(window,width=10)
+cyclestxt.insert(0, "10")
 cyclestxt.grid(column=1, row=3)
 
 currentinfo = Label(window, text=" ")
@@ -36,22 +38,18 @@ global comboprint
 comboprint = Label(window, text=" ")
 comboprint.grid(column=0, row=7)
 
-cyclesint = -1
+cyclesint = 1
 
 def start():
     global cycles, cyclesint
-    try:
-        res = "Cycles Remaining: " + str(cyclesint)
-        currentinfo.configure(text= res)
-        #cycles = cyclestxt.get
-        cyclesint= int(cyclestxt.get())
-        main()
-    except:
-        print("error of some kind")
-        main()
+    cyclesint= int(cyclestxt.get())
+    res = "Cycles Remaining: " + str(cyclesint)
+    currentinfo.configure(text= res)
+    #cycles = cyclestxt.get
+    thisismain()
 
 def tothetop():
-    main()
+    thisismain()
 
 #cyclesint= int(cyclestxt.get())
 
@@ -66,7 +64,7 @@ def passing():
     #print(blah)
     sleep(.1)
 
-start = Button(window, text="Start", command=start, width=10)
+start = Button(window, text="Start", command=threading.Thread(target=start).start(), width=10)
 start.grid(column=0, row=4)
 
 stop = Button(window, text="Stop", command=start, width=10)
@@ -75,20 +73,24 @@ stop.grid(column=1, row=4)
 relaysoff = Button(window, text="Relays Off", command=passing, width=10)
 relaysoff.grid(column=0, row=5)
 #window.mainloop()
-def main():
-#global cycles, cyclesint, bike
+def thisismain():
+    global cycles, cyclesint, bike
     bike = cyclesint
     #window.mainloop()
-    while cyclesint >= 0:
-        #print(blah)
-        #print(bike)
-        #bike -= 1
-        blah = "cycles remaining : " + str(cyclesint)
-        comboprint.configure(text = blah)
-        #passing()
-        print(cyclesint)
-        cyclesint -= 1
-        sleep(.1)
-        #tothetop()
-        print("bike was :", bike)        
+    if cyclesint >= 1:
+        while cyclesint >= 1:
+            #print(blah)
+            #print(bike)
+            #bike -= 1
+            blah = "cycles remaining : " + str(cyclesint)
+            comboprint.configure(text = blah)
+            #passing()
+            print(cyclesint)
+            cyclesint -= 1
+            sleep(.5)
+            #tothetop()
+            print("bike was :", bike)
+    else:
+        print("something printed")        
+
 window.mainloop()
