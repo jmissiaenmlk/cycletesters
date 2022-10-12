@@ -24,8 +24,8 @@ combo2txt.grid(column=1, row=1)
 combo3txt = Entry(window,width=10)
 combo3txt.grid(column=1, row=2)
 
-cycles = Label(window, text="Number of Cycles")
-cycles.grid(column=0, row=3)
+cycleslabel = Label(window, text="Number of Cycles")
+cycleslabel.grid(column=0, row=3)
 
 cyclestxt = Entry(window,width=10)
 cyclestxt.grid(column=1, row=3)
@@ -33,7 +33,6 @@ cyclestxt.grid(column=1, row=3)
 currentinfo = Label(window, text=" ")
 currentinfo.grid(column=0, row=6)
 
-global comboprint
 comboprint = Label(window, text=" ")
 comboprint.grid(column=0, row=7)
 
@@ -41,13 +40,12 @@ cyclesint = 0
 cycles = cyclesint
 
 def main():
-    global cycles, cyclesint, bike
-    bike = cyclesint
+    global cycles, cyclesint
     while cyclesint > -1:
-        blah = "Cycles Remaining : " + str(cyclesint)
-        comboprint.configure(text = blah)
-        res = "Cycles Requested: " + str(cycles)
-        currentinfo.configure(text= res)
+        cyclehelper = "Cycles Remaining : " + str(cyclesint)
+        comboprint.configure(text = cyclehelper)
+        requestedhelper = "Cycles Requested: " + str(cycles)
+        currentinfo.configure(text= requestedhelper)
         cyclesint -= 1
         sleep(.25)
   
