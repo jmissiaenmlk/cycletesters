@@ -36,15 +36,19 @@ global comboprint
 comboprint = Label(window, text=" ")
 comboprint.grid(column=0, row=7)
 
-cyclesint = 5
+cyclesint = -1
 
 def start():
     global cycles, cyclesint
-    res = "Cycles Remaining: " + str(cyclesint)
-    currentinfo.configure(text= res)
-    #cycles = cyclestxt.get
-    cyclesint= int(cyclestxt.get())
-    main()
+    try:
+        res = "Cycles Remaining: " + str(cyclesint)
+        currentinfo.configure(text= res)
+        #cycles = cyclestxt.get
+        cyclesint= int(cyclestxt.get())
+        main()
+    except:
+        print("error of some kind")
+        main()
 
 def tothetop():
     main()
@@ -70,11 +74,12 @@ stop.grid(column=1, row=4)
 
 relaysoff = Button(window, text="Relays Off", command=passing, width=10)
 relaysoff.grid(column=0, row=5)
-window.mainloop()
+#window.mainloop()
 def main():
-    global cycles, cyclesint, bike
+#global cycles, cyclesint, bike
     bike = cyclesint
-    if cyclesint > 5:
+    #window.mainloop()
+    while cyclesint >= 0:
         #print(blah)
         #print(bike)
         #bike -= 1
@@ -84,7 +89,6 @@ def main():
         print(cyclesint)
         cyclesint -= 1
         sleep(.1)
-        tothetop()
-    print("bike was :", bike)        
-
-#window.mainloop()
+        #tothetop()
+        print("bike was :", bike)        
+window.mainloop()
