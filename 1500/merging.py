@@ -185,6 +185,7 @@ def shackle_lock_check():
         print("erorr with shackle not locking")
         program_end()
 
+### GUI LAYOUT ###
 combo1label = Label(window, text="Combo 1")
 combo1label.grid(column=0, row=0, padx=(80,30))
 
@@ -224,8 +225,11 @@ cyclesremaininglable.grid(column=0, row=8, sticky=W, padx=(10,30))
 report1lable = Label(window, text="Actual Complete Cycles    ")
 report1lable.grid(column=0, row=9, sticky=W, padx=(10,30))
 
-dividerline = Label(window, text="    ____________________________")
-dividerline.grid(column=0, row=10, columnspan = 2, sticky=EW, pady=(20,20))
+dividerlinelower = Label(window, text="    ____________________________")
+dividerlinelower.grid(column=0, row=10, columnspan = 2, sticky=EW, pady=(20,20))
+
+dividerlineupper = Label(window, text="    ____________________________")
+dividerlineupper.grid(column=0, row=4, columnspan = 2, sticky=EW, pady=(20,20))
 
 
 def main():
