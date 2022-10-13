@@ -217,13 +217,13 @@ jogtxt = Entry(window,width=8)
 jogtxt.grid(column=1, row=11, sticky=EW, padx=(20,20))
 
 currentinfo = Label(window, text="Cycles Requested    ")
-currentinfo.grid(column=0, row=7, sticky=W, padx=(10,30))
+currentinfo.grid(column=0, row=7, columnspan = 2, sticky=W, padx=(10,30))
 
 cyclesremaininglable = Label(window, text="Cycles Remaining    ")
-cyclesremaininglable.grid(column=0, row=8, sticky=W, padx=(10,30))
+cyclesremaininglable.grid(column=0, row=8, columnspan = 2, sticky=W, padx=(10,30))
 
 report1lable = Label(window, text="Actual Complete Cycles    ")
-report1lable.grid(column=0, row=9, sticky=W, padx=(10,30))
+report1lable.grid(column=0, row=9, columnspan = 2, sticky=W, padx=(10,30))
 
 dividerlinelower = Label(window, text="    ____________________________")
 dividerlinelower.grid(column=0, row=10, columnspan = 2, sticky=EW, pady=(20,20))
