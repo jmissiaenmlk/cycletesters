@@ -224,7 +224,7 @@ cyclesremaininglable.grid(column=0, row=8, padx=(10,30))
 report1lable = Label(window, text="Actual Complete Cycles    ")
 report1lable.grid(column=0, row=9, padx=(10,30))
 
-dividerline = Label(window, text="____________________________")
+dividerline = Label(window, text="    ____________________________")
 dividerline.grid(column=0, row=10, columnspan = 2, sticky=EW, pady=(20,20))
 
 
@@ -324,13 +324,13 @@ stop = Button(window, text="Stop", command=threading.Thread(target=stop_program)
 stop.grid(column=1, row=5)
 
 relaysoff = Button(window, text="Relays Off", command=relay_reset, width=10)
-relaysoff.grid(column=0, row=12)
+relaysoff.grid(column=0, row=12, sticky=E)
 
 jogbutton = Button(window, text="Jog Dial", command=jog_func, width=10)
-jogbutton.grid(column=1, row=12)
+jogbutton.grid(column=1, row=12, sticky=W)
 
 jogbuttonstep = Button(window, text="Half Step", command=jogstep_func, width=10)
-jogbuttonstep.grid(column=1, row=13)
+jogbuttonstep.grid(column=1, row=13, sticky=W)
 
 window.mainloop()
 
