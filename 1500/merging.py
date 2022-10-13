@@ -321,10 +321,10 @@ def jogstep_func():
         sleep(motorSpeed)
         pulse = not pulse # changes pulse pin from high to low each time through loop
 
-startbutton = Button(window, text="Start", command=threading.Thread(target=start_program).start, width=10)
+startbutton = Button(window, text="Start", bg = 'green', command=threading.Thread(target=start_program).start, width=10)
 startbutton.grid(column=0, row=4)
 
-stop = Button(window, text="Stop", command=threading.Thread(target=stop_program).start, width=10)
+stop = Button(window, text="Stop", bg = 'red', command=threading.Thread(target=stop_program).start, width=10)
 stop.grid(column=1, row=4)
 
 relaysoff = Button(window, text="Relays Off", command=relay_reset, width=10)
