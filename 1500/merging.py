@@ -35,7 +35,8 @@ combo1 = 0
 combo2 = 0
 combo3 = 0
 cyclesint = IntVar()
-cycles = cyclesint
+#cycles = cyclesint
+cycles = 0
 
 ### general variables ###
 cyclesInitial = cycles # keeps original cycle count
@@ -198,7 +199,8 @@ combo3txt.grid(column=1, row=2)
 cycleslabel = Label(window, text="Number of Cycles")
 cycleslabel.grid(column=0, row=3)
 
-cyclestxt = Entry(window,width=10, textvariable = cyclesint)
+cyclestxt = Entry(window,width=10,)
+#cyclestxt = Entry(window,width=10, textvariable = cyclesint)
 cyclestxt.grid(column=1, row=3)
 
 currentinfo = Label(window, text=" ")
@@ -213,7 +215,7 @@ report1lable.grid(column=0, row=8)
 
 def main():
     global cycles, cyclesint, direction
-    while cyclesint > -1:
+    while cycles > -1:
         RELAY.relayOFF(0,1)
         RELAY.relayOFF(0,2)
         RELAY.relayOFF(0,3)
@@ -243,21 +245,21 @@ def main():
     #    cycles -= 1
     #    print("cycles remaining ", cycles)
 
-        cyclehelper = "Cycles Remaining : " + str(cyclesint)
+        cyclehelper = "Cycles Remaining : " + str(cycles)
         cyclesremaininglable.configure(text = cyclehelper)
         requestedhelper = "Cycles Requested: " + str(cycles)
         currentinfo.configure(text= requestedhelper)
         combohelper = "selected combo: " + str(combo1)+ "/"+ str(combo2) +"/" +str(combo3)
         report1lable.configure(text = combohelper)
-        cyclesint -= 1
+        cycles -= 1
         sleep(.25)
 
     program_end()
 
 def start_program():
     global cycles, cyclesint, combo1, combo2, combo3, distanceToZero
-    cyclesint= int(cyclestxt.get())
-    cycles = cyclesint
+    cycles= int(cyclestxt.get())
+    #cycles = cyclesint
     combo1 = int(combo1txt.get())
     combo2 = int(combo2txt.get())
     combo3 = int(combo3txt.get())
@@ -276,7 +278,7 @@ def relay_reset():
 
 def stop_program():
     print("Stop Program")
-    global cyclesint
+    global cycles
     cyclesint= 0
     main()
 
