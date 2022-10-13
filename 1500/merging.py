@@ -210,19 +210,19 @@ cyclestxt = Entry(window,width=10,)
 cyclestxt.grid(column=1, row=3)
 
 joglabel = Label(window, text="Jog Increments")
-joglabel.grid(column=0, row=11, padx=(60,30))
+joglabel.grid(column=0, row=11, sticky=E, padx=(60,0))
 
-jogtxt = Entry(window,width=10)
-jogtxt.grid(column=1, row=11)
+jogtxt = Entry(window,width=12)
+jogtxt.grid(column=1, row=11, sticky=W)
 
 currentinfo = Label(window, text="Cycles Requested    ")
-currentinfo.grid(column=0, row=7, padx=(10,30))
+currentinfo.grid(column=0, row=7, sticky=W, padx=(10,30))
 
 cyclesremaininglable = Label(window, text="Cycles Remaining    ")
-cyclesremaininglable.grid(column=0, row=8, padx=(10,30))
+cyclesremaininglable.grid(column=0, row=8, sticky=W, padx=(10,30))
 
 report1lable = Label(window, text="Actual Complete Cycles    ")
-report1lable.grid(column=0, row=9, padx=(10,30))
+report1lable.grid(column=0, row=9, sticky=W, padx=(10,30))
 
 dividerline = Label(window, text="    ____________________________")
 dividerline.grid(column=0, row=10, columnspan = 2, sticky=EW, pady=(20,20))
