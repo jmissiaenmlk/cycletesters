@@ -189,34 +189,34 @@ combo3label = Label(window, text="Combo 3")
 combo3label.grid(column=0, row=2, padx=(30,10))
 
 combo1txt = Entry(window,width=10)
-combo1txt.grid(column=1, row=0, padx=(30,10))
+combo1txt.grid(column=1, row=0)
 
 combo2txt = Entry(window,width=10)
-combo2txt.grid(column=1, row=1, padx=(30,10))
+combo2txt.grid(column=1, row=1)
 
 combo3txt = Entry(window,width=10)
 combo3txt.grid(column=1, row=2)
 
 joglabel = Label(window, text="Jog Increments")
-joglabel.grid(column=0, row=3, padx=(30,10))
+joglabel.grid(column=0, row=4, padx=(30,10))
 
 jogtxt = Entry(window,width=10)
-jogtxt.grid(column=1, row=3)
+jogtxt.grid(column=1, row=4)
 
 cycleslabel = Label(window, text="Number of Cycles")
-cycleslabel.grid(column=0, row=4, padx=(30,10))
+cycleslabel.grid(column=0, row=3, padx=(30,10))
 
 cyclestxt = Entry(window,width=10,)
-cyclestxt.grid(column=1, row=4)
+cyclestxt.grid(column=1, row=3)
 
 currentinfo = Label(window, text="Cycles Requested ")
-currentinfo.grid(column=0, row=5, padx=(10,10))
+currentinfo.grid(column=0, row=7, padx=(10,10))
 
 cyclesremaininglable = Label(window, text="Cycles Remaining ")
-cyclesremaininglable.grid(column=0, row=6, padx=(10,10))
+cyclesremaininglable.grid(column=0, row=8, padx=(10,10))
 
 report1lable = Label(window, text="End of Cycle Report ")
-report1lable.grid(column=0, row=7, padx=(10,10))
+report1lable.grid(column=0, row=9, padx=(10,10))
 
 
 def main():
@@ -297,16 +297,16 @@ def jog_func():
     motor_turns(jog_helper)
 
 startbutton = Button(window, text="Start", command=threading.Thread(target=start_program).start, width=10)
-startbutton.grid(column=0, row=4)
+startbutton.grid(column=0, row=5)
 
 stop = Button(window, text="Stop", command=threading.Thread(target=stop_program).start, width=10)
-stop.grid(column=1, row=4)
+stop.grid(column=1, row=5)
 
 relaysoff = Button(window, text="Relays Off", command=relay_reset, width=10)
-relaysoff.grid(column=0, row=5)
+relaysoff.grid(column=0, row=6)
 
 jogbutton = Button(window, text="Jog Dial", command=jog_func, width=10)
-jogbutton.grid(column=1, row=5)
+jogbutton.grid(column=1, row=6)
 
 window.mainloop()
 
