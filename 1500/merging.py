@@ -106,7 +106,7 @@ def program_end():
     # print("Cycles remaining when stopped: ", cycles)
     RELAY.relayOFF(0,unlock_shackle_pin)
     RELAY.relayOFF(0,lock_shackle_pin)
-    input("Press enter to exit")
+    #input("Press enter to exit")
     exit()
 
 # pulls shackle open
@@ -223,7 +223,7 @@ report1lable.grid(column=0, row=9, padx=(10,30))
 
 def main():
     global cycles, cyclesint, direction
-    while cycles > -1:
+    while cycles > 0:
         RELAY.relayOFF(0,1)
         RELAY.relayOFF(0,2)
         RELAY.relayOFF(0,3)
@@ -286,7 +286,7 @@ def relay_reset():
     RELAY.relayOFF(0,7)
 
 def stop_program():
-    print("Stop Program")
+    #print("Stop Program")
     global cycles, cycles_completed
     cyclehelper = "Cycles Remaining : 0"
     cyclesremaininglable.configure(text = cyclehelper)
