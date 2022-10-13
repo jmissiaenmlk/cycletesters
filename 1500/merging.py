@@ -38,6 +38,7 @@ cyclesint = IntVar()
 #cycles = cyclesint
 cycles = 0
 cycles_completed = 0
+cycle_keeper = 0
 
 ### general variables ###
 cyclesInitial = cycles # keeps original cycle count
@@ -95,9 +96,12 @@ def program_start():
 
 # various info printed at end of program as well as cleaning up GPIO
 def program_end():
-    global cycles
+    global cycles, cycles_completed, cycle_keeper
     cyclehelper = "Cycles Remaining : 0"
     cyclesremaininglable.configure(text = cyclehelper)
+    cycles_completed = cyclesInitial - cycle_keeper
+    reporthelper = "Actual Complete Cycles: " + str(cycles_completed)
+    report1lable.configure(text = reporthelper)
     # print("Cycles requested: ", cyclesInitial)
     # print("Shackle failed to open ", shackle_not_open_count, " times")
     # print("Shackle failed to lock ", shackle_not_locked_count, " times")
@@ -222,7 +226,7 @@ report1lable.grid(column=0, row=9, padx=(10,30))
 
 
 def main():
-    global cycles, cyclesint, direction
+    global cycles, cyclesint, direction, cycle_keeper
     while cycles > 0:
         RELAY.relayOFF(0,1)
         RELAY.relayOFF(0,2)
@@ -256,7 +260,7 @@ def main():
         cyclesremaininglable.configure(text = cyclehelper)
         requestedhelper = "Cycles Requested: " + str(cyclesInitial)
         currentinfo.configure(text= requestedhelper)
-        cycles_completed = cyclesInitial - cycle_keeper
+        cycles_completed = cyclesInitial - cycles
         reporthelper = "Actual Complete Cycles: " + str(cycles_completed)
         report1lable.configure(text = reporthelper)
         
