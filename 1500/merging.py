@@ -127,11 +127,11 @@ def pull_shackle_open():
 
 # checks to see if shackle opened and will pull the shackle again if it didn't open on the 1st try
 def shackle_open_check():
-    global shackle_not_open_count,shackle_not_open_helper, direction
+    global shackle_not_open_count,shackle_not_open_helper, direction, cycles
     if shackle_not_open_count >= 350:
         print("erorr with shackle not opening")
         program_end()
-    elif shackle_not_open_helper == 4:
+    elif shackle_not_open_helper == 4 and cycles > 0:
         push_shackle_closed()
         motor_turns(distanceToZero) # spins dial back to 0 to keep position info
         direction = not direction
