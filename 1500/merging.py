@@ -132,7 +132,7 @@ def pull_shackle_open():
 # checks to see if shackle opened and will pull the shackle again if it didn't open on the 1st try
 def shackle_open_check():
     global shackle_not_open_count,shackle_not_open_helper, direction, cycles
-    if shackle_not_open_count >= 350 or cycles >= 0:
+    if shackle_not_open_count >= 350 or cycles <= 0:
         print("erorr with shackle not opening")
         program_end()
     elif shackle_not_open_helper == 4:
@@ -309,7 +309,7 @@ def jogstep_func():
     sleep(shacklePause)
     RELAY.relayOFF(0,lock_shackle_pin)
     global pulse
-    for i in range(1):
+    for i in range(2):
         GPIO.output(pulse_pin, pulse)
         sleep(motorSpeed)
         pulse = not pulse # changes pulse pin from high to low each time through loop
@@ -324,10 +324,10 @@ relaysoff = Button(window, text="Relays Off", command=relay_reset, width=10)
 relaysoff.grid(column=0, row=6)
 
 jogbutton = Button(window, text="Jog Dial", command=jog_func, width=10)
-jogbutton.grid(column=1, row=6)
+jogbutton.grid(column=1, row=10)
 
 jogbuttonstep = Button(window, text="Half Step", command=jogstep_func, width=10)
-jogbuttonstep.grid(column=1, row=10)
+jogbuttonstep.grid(column=1, row=11)
 
 window.mainloop()
 
