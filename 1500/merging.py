@@ -300,8 +300,8 @@ def stop_program():
     #print("Stop Program")
     global cycles, cycles_completed, cycle_keeper
     cycle_keeper = cycles
-    cyclehelper = "Cycles Remaining : 0"
-    cyclesremaininglable.configure(text = cyclehelper)
+    #cyclehelper = "Cycles Remaining : 0"
+    #cyclesremaininglable.configure(text = cyclehelper)
     cycles= -1
     program_end()
 
