@@ -324,13 +324,13 @@ stop = Button(window, text="Stop", command=threading.Thread(target=stop_program)
 stop.grid(column=1, row=5)
 
 relaysoff = Button(window, text="Relays Off", command=relay_reset, width=10)
-relaysoff.grid(column=0, row=13)
+relaysoff.grid(column=0, row=12)
 
 jogbutton = Button(window, text="Jog Dial", command=jog_func, width=10)
 jogbutton.grid(column=1, row=12)
 
 jogbuttonstep = Button(window, text="Half Step", command=jogstep_func, width=10)
-jogbuttonstep.grid(column=0, row=12)
+jogbuttonstep.grid(column=1, row=13)
 
 window.mainloop()
 
