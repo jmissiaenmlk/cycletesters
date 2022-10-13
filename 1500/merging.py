@@ -28,7 +28,7 @@ pulse_pin = 19 # ouput pin that controls motor pulses
 ### create GUI window
 window = Tk()
 window.title("1500 Cycle Tester")
-window.geometry('375x350')
+window.geometry('400x400')
 
 ### input variables from GUI
 combo1 = 0
