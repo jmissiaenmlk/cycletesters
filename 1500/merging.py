@@ -202,13 +202,13 @@ cycleslabel.grid(column=0, row=3)
 cyclestxt = Entry(window,width=10,)
 cyclestxt.grid(column=1, row=3)
 
-currentinfo = Label(window, text=" ")
+currentinfo = Label(window, text="Cycles Requested ")
 currentinfo.grid(column=0, row=6)
 
-cyclesremaininglable = Label(window, text=" ")
+cyclesremaininglable = Label(window, text="Cycles Remaining ")
 cyclesremaininglable.grid(column=0, row=7)
 
-report1lable = Label(window, text=" ")
+report1lable = Label(window, text="End of Cycle Report ")
 report1lable.grid(column=0, row=8)
 
 
@@ -244,7 +244,7 @@ def main():
 
         cyclehelper = "Cycles Remaining : " + str(cycles)
         cyclesremaininglable.configure(text = cyclehelper)
-        requestedhelper = "Cycles Requested: " + str(cycles)
+        requestedhelper = "Cycles Requested: " + str(cyclesInitial)
         currentinfo.configure(text= requestedhelper)
         combohelper = "selected combo: " + str(combo1)+ "/"+ str(combo2) +"/" +str(combo3)
         report1lable.configure(text = combohelper)
@@ -276,7 +276,7 @@ def relay_reset():
 def stop_program():
     print("Stop Program")
     global cycles
-    cycles= 0
+    cycles= -1
     main()
 
 
