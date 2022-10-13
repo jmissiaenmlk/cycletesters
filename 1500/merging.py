@@ -303,7 +303,16 @@ def jog_func():
     motor_turns(jog_helper)
 
 def jogstep_func():
-    motor_turns(.5)
+    GPIO.output(direction_pin, direction)
+    RELAY.relayON(0,lock_shackle_pin)
+    sleep(shacklePause)
+    sleep(shacklePause)
+    RELAY.relayOFF(0,lock_shackle_pin)
+    global pulse
+    for i in range(1):
+        GPIO.output(pulse_pin, pulse)
+        sleep(motorSpeed)
+        pulse = not pulse # changes pulse pin from high to low each time through loop
 
 startbutton = Button(window, text="Start", command=threading.Thread(target=start_program).start, width=10)
 startbutton.grid(column=0, row=5)
