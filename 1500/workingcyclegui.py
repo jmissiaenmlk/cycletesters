@@ -8,7 +8,8 @@ window = Tk()
 window.title("1500 Cycle Tester")
 window.geometry('300x300')
 
-cyclesint = IntVar()
+cyclesint = 0
+#cyclesint = IntVar()
 cycles = cyclesint
 combo1 = IntVar()
 combo2 = IntVar()
@@ -35,7 +36,8 @@ combo3txt.grid(column=1, row=2)
 cycleslabel = Label(window, text="Number of Cycles")
 cycleslabel.grid(column=0, row=3)
 
-cyclestxt = Entry(window,width=10, textvariable = cyclesint)
+cyclestxt = Entry(window,width=10)
+#cyclestxt = Entry(window,width=10, textvariable = cyclesint)
 cyclestxt.grid(column=1, row=3)
 
 currentinfo = Label(window, text=" ")

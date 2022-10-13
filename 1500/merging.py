@@ -31,9 +31,9 @@ window.title("1500 Cycle Tester")
 window.geometry('300x300')
 
 ### input variables from GUI
-combo1 = IntVar()
-combo2 = IntVar()
-combo3 = IntVar()
+combo1 = 0
+combo2 = 0
+combo3 = 0
 cyclesint = IntVar()
 cycles = cyclesint
 
