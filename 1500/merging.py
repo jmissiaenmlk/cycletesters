@@ -324,10 +324,10 @@ relaysoff = Button(window, text="Relays Off", command=relay_reset, width=10)
 relaysoff.grid(column=0, row=12)
 
 jogbutton = Button(window, text="Jog Dial", command=jog_func, width=10)
-jogbutton.grid(column=0, row=11)
+jogbutton.grid(column=1, row=11)
 
 jogbuttonstep = Button(window, text="Half Step", command=jogstep_func, width=10)
-jogbuttonstep.grid(column=1, row=11)
+jogbuttonstep.grid(column=0, row=11)
 
 window.mainloop()
 
