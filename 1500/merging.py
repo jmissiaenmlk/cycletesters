@@ -240,7 +240,7 @@ def main():
 
         sleep(shacklePause)
         sleep(.1)
-        cycles -= 1
+    #    cycles -= 1
         print("cycles remaining ", cycles)
 
         cyclehelper = "Cycles Remaining : " + str(cyclesint)
@@ -254,10 +254,6 @@ def main():
 
     program_end()
 
-
-
-  
-
 def start_program():
     global cycles, cyclesint, combo1, combo2, combo3
     cyclesint= int(cyclestxt.get())
@@ -269,7 +265,14 @@ def start_program():
 
 def relay_reset():
     print("turn off relays")
-
+    RELAY.relayOFF(0,1)
+    RELAY.relayOFF(0,2)
+    RELAY.relayOFF(0,3)
+    RELAY.relayOFF(0,4)
+    RELAY.relayOFF(0,5)
+    RELAY.relayOFF(0,6)
+    RELAY.relayOFF(0,7)
+    
 def stop_program():
     print("Stop Program")
     global cyclesint
