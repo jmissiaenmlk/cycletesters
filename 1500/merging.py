@@ -213,7 +213,7 @@ joglabel = Label(window, text="Jog Increments")
 joglabel.grid(column=0, row=11, sticky=E, padx=(60,0))
 
 jogtxt = Entry(window,width=12)
-jogtxt.grid(column=1, row=11, sticky=W)
+jogtxt.grid(column=1, row=11, sticky=EW, padx=(10,10))
 
 currentinfo = Label(window, text="Cycles Requested    ")
 currentinfo.grid(column=0, row=7, sticky=W, padx=(10,30))
