@@ -37,6 +37,7 @@ combo3 = 0
 cyclesint = IntVar()
 #cycles = cyclesint
 cycles = 0
+cycles_completed = 0
 
 ### general variables ###
 cyclesInitial = cycles # keeps original cycle count
@@ -247,7 +248,7 @@ def main():
         cyclesremaininglable.configure(text = cyclehelper)
         requestedhelper = "Cycles Requested: " + str(cyclesInitial)
         currentinfo.configure(text= requestedhelper)
-        reporthelper = "Actual complete cycles: " + str(cyclesInitial - (cycles))
+        reporthelper = "Actual complete cycles: " + str(cycles_completed)
         report1lable.configure(text = reporthelper)
         
         sleep(.25)
@@ -278,10 +279,13 @@ def relay_reset():
 
 def stop_program():
     print("Stop Program")
-    global cycles
+    global cycles, cycles_completed
+    cycles_completed = cyclesInitial - cycles
     cycles= -1
     main()
 
+def jog_func():
+    motor_turns(10)
 
 startbutton = Button(window, text="Start", command=threading.Thread(target=start_program).start, width=10)
 startbutton.grid(column=0, row=4)
@@ -291,6 +295,9 @@ stop.grid(column=1, row=4)
 
 relaysoff = Button(window, text="Relays Off", command=relay_reset, width=10)
 relaysoff.grid(column=0, row=5)
+
+jogbutton = Button(window, text="Jog Dial", command=jog_func, width=10)
+jogbutton.grid(column=1, row=5)
 
 window.mainloop()
 
