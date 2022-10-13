@@ -204,19 +204,19 @@ jogtxt = Entry(window,width=10)
 jogtxt.grid(column=1, row=4)
 
 cycleslabel = Label(window, text="Number of Cycles")
-cycleslabel.grid(column=0, row=3, padx=(30,10))
+cycleslabel.grid(column=0, row=3, padx=(10,30))
 
 cyclestxt = Entry(window,width=10,)
 cyclestxt.grid(column=1, row=3)
 
 currentinfo = Label(window, text="Cycles Requested ")
-currentinfo.grid(column=0, row=7, padx=(10,10))
+currentinfo.grid(column=0, row=7, padx=(10,30))
 
 cyclesremaininglable = Label(window, text="Cycles Remaining ")
-cyclesremaininglable.grid(column=0, row=8, padx=(10,10))
+cyclesremaininglable.grid(column=0, row=8, padx=(10,30))
 
 report1lable = Label(window, text="End of Cycle Report ")
-report1lable.grid(column=0, row=9, padx=(10,10))
+report1lable.grid(column=0, row=9, padx=(10,30))
 
 
 def main():
@@ -259,6 +259,8 @@ def main():
         
         sleep(.25)
 
+    cyclehelper = "Cycles Remaining :0    " + str(cycles)
+    cyclesremaininglable.configure(text = cyclehelper)
     program_end()
 
 # this function sets all the program variables to the user inputs from the GUI
