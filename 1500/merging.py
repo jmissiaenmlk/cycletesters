@@ -241,26 +241,29 @@ def main():
 
         sleep(shacklePause)
         sleep(.1)
+        cycles -= 1
 
         cyclehelper = "Cycles Remaining : " + str(cycles)
         cyclesremaininglable.configure(text = cyclehelper)
         requestedhelper = "Cycles Requested: " + str(cyclesInitial)
         currentinfo.configure(text= requestedhelper)
-        combohelper = "selected combo: " + str(combo1)+ "/"+ str(combo2) +"/" +str(combo3)
-        report1lable.configure(text = combohelper)
-        cycles -= 1
+        reporthelper = "Actual complete cycles: " + str(cyclesInitial - (cycles))
+        report1lable.configure(text = reporthelper)
+        
         sleep(.25)
 
     program_end()
 
+# this function sets all the program variables to the user inputs from the GUI
 def start_program():
-    global cycles, cyclesint, combo1, combo2, combo3, distanceToZero
+    global cycles, cyclesint, combo1, combo2, combo3, distanceToZero, cyclesInitial
     cycles= int(cyclestxt.get())
     #cycles = cyclesint
     combo1 = int(combo1txt.get())
     combo2 = int(combo2txt.get())
     combo3 = int(combo3txt.get())
     distanceToZero = 40 - combo3
+    cyclesInitial = cycles
     main()
 
 def relay_reset():
