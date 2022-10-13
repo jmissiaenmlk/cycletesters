@@ -217,7 +217,7 @@ currentinfo.grid(column=0, row=7, padx=(10,30))
 cyclesremaininglable = Label(window, text="Cycles Remaining    ")
 cyclesremaininglable.grid(column=0, row=8, padx=(10,30))
 
-report1lable = Label(window, text="End of Cycle Report    ")
+report1lable = Label(window, text="Actual Complete Cycles    ")
 report1lable.grid(column=0, row=9, padx=(10,30))
 
 
@@ -256,7 +256,8 @@ def main():
         cyclesremaininglable.configure(text = cyclehelper)
         requestedhelper = "Cycles Requested: " + str(cyclesInitial)
         currentinfo.configure(text= requestedhelper)
-        reporthelper = "Actual complete cycles: " + str(cycles_completed)
+        cycles_completed = cyclesInitial - cycles
+        reporthelper = "Actual Complete Cycles: " + str(cycles_completed)
         report1lable.configure(text = reporthelper)
         
         sleep(.25)
@@ -272,7 +273,6 @@ def start_program():
     combo3 = int(combo3txt.get())
     distanceToZero = 40 - combo3
     cyclesInitial = cycles
-    cycles_completed = cyclesInitial - cycles
     main()
 
 def relay_reset():
