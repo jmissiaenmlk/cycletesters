@@ -200,7 +200,6 @@ cycleslabel = Label(window, text="Number of Cycles")
 cycleslabel.grid(column=0, row=3)
 
 cyclestxt = Entry(window,width=10,)
-#cyclestxt = Entry(window,width=10, textvariable = cyclesint)
 cyclestxt.grid(column=1, row=3)
 
 currentinfo = Label(window, text=" ")
@@ -242,8 +241,6 @@ def main():
 
         sleep(shacklePause)
         sleep(.1)
-    #    cycles -= 1
-    #    print("cycles remaining ", cycles)
 
         cyclehelper = "Cycles Remaining : " + str(cycles)
         cyclesremaininglable.configure(text = cyclehelper)
@@ -279,14 +276,14 @@ def relay_reset():
 def stop_program():
     print("Stop Program")
     global cycles
-    cyclesint= 0
+    cycles= 0
     main()
 
 
 startbutton = Button(window, text="Start", command=threading.Thread(target=start_program).start, width=10)
 startbutton.grid(column=0, row=4)
 
-stop = Button(window, text="Stop", command=start_program, width=10)
+stop = Button(window, text="Stop", command=threading.Thread(target=stop_program).start, width=10)
 stop.grid(column=1, row=4)
 
 relaysoff = Button(window, text="Relays Off", command=relay_reset, width=10)
