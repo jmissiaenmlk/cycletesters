@@ -28,7 +28,7 @@ pulse_pin = 19 # ouput pin that controls motor pulses
 ### create GUI window
 window = Tk()
 window.title("1500 Cycle Tester")
-window.geometry('350x350')
+window.geometry('375x350')
 
 ### input variables from GUI
 combo1 = 0
@@ -180,13 +180,13 @@ def shackle_lock_check():
         program_end()
 
 combo1label = Label(window, text="Combo 1")
-combo1label.grid(column=0, row=0, padx=(30,30))
+combo1label.grid(column=0, row=0, padx=(80,30))
 
 combo2label = Label(window, text="Combo 2")
-combo2label.grid(column=0, row=1, padx=(30,30))
+combo2label.grid(column=0, row=1, padx=(80,30))
 
 combo3label = Label(window, text="Combo 3")
-combo3label.grid(column=0, row=2, padx=(30,30))
+combo3label.grid(column=0, row=2, padx=(80,30))
 
 combo1txt = Entry(window,width=10)
 combo1txt.grid(column=1, row=0)
@@ -198,24 +198,24 @@ combo3txt = Entry(window,width=10)
 combo3txt.grid(column=1, row=2)
 
 cycleslabel = Label(window, text="Number of Cycles")
-cycleslabel.grid(column=0, row=3, padx=(10,30))
+cycleslabel.grid(column=0, row=3, padx=(80,30))
 
 cyclestxt = Entry(window,width=10,)
 cyclestxt.grid(column=1, row=3)
 
 joglabel = Label(window, text="Jog Increments")
-joglabel.grid(column=0, row=4, padx=(30,30))
+joglabel.grid(column=0, row=4, padx=(80,30))
 
 jogtxt = Entry(window,width=10)
 jogtxt.grid(column=1, row=4)
 
-currentinfo = Label(window, text="Cycles Requested ")
+currentinfo = Label(window, text="Cycles Requested    ")
 currentinfo.grid(column=0, row=7, padx=(10,30))
 
-cyclesremaininglable = Label(window, text="Cycles Remaining ")
+cyclesremaininglable = Label(window, text="Cycles Remaining    ")
 cyclesremaininglable.grid(column=0, row=8, padx=(10,30))
 
-report1lable = Label(window, text="End of Cycle Report ")
+report1lable = Label(window, text="End of Cycle Report    ")
 report1lable.grid(column=0, row=9, padx=(10,30))
 
 
@@ -250,16 +250,16 @@ def main():
         sleep(.1)
         cycles -= 1
 
-        cyclehelper = "Cycles Remaining :    " + str(cycles)
+        cyclehelper = "Cycles Remaining : " + str(cycles)
         cyclesremaininglable.configure(text = cyclehelper)
-        requestedhelper = "Cycles Requested:    " + str(cyclesInitial)
+        requestedhelper = "Cycles Requested: " + str(cyclesInitial)
         currentinfo.configure(text= requestedhelper)
-        reporthelper = "Actual complete cycles:    " + str(cycles_completed)
+        reporthelper = "Actual complete cycles: " + str(cycles_completed)
         report1lable.configure(text = reporthelper)
         
         sleep(.25)
 
-    cyclehelper = "Cycles Remaining :0    " + str(cycles)
+    cyclehelper = "Cycles Remaining : 0"
     cyclesremaininglable.configure(text = cyclehelper)
     program_end()
 
@@ -267,7 +267,6 @@ def main():
 def start_program():
     global cycles, cyclesint, combo1, combo2, combo3, distanceToZero, cyclesInitial
     cycles= int(cyclestxt.get())
-    #cycles = cyclesint
     combo1 = int(combo1txt.get())
     combo2 = int(combo2txt.get())
     combo3 = int(combo3txt.get())
@@ -292,7 +291,8 @@ def stop_program():
     cyclesremaininglable.configure(text = cyclehelper)
     cycles_completed = cyclesInitial - cycles
     cycles= -1
-    main()
+    #main()
+    program_end()
 
 def jog_func():
     jog_helper = int(jogtxt.get())
