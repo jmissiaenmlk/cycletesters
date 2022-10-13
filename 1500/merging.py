@@ -180,13 +180,13 @@ def shackle_lock_check():
         program_end()
 
 combo1label = Label(window, text="Combo 1")
-combo1label.grid(column=0, row=0, padx=(30,10))
+combo1label.grid(column=0, row=0, padx=(30,30))
 
 combo2label = Label(window, text="Combo 2")
-combo2label.grid(column=0, row=1, padx=(30,10))
+combo2label.grid(column=0, row=1, padx=(30,30))
 
 combo3label = Label(window, text="Combo 3")
-combo3label.grid(column=0, row=2, padx=(30,10))
+combo3label.grid(column=0, row=2, padx=(30,30))
 
 combo1txt = Entry(window,width=10)
 combo1txt.grid(column=1, row=0)
@@ -197,17 +197,17 @@ combo2txt.grid(column=1, row=1)
 combo3txt = Entry(window,width=10)
 combo3txt.grid(column=1, row=2)
 
-joglabel = Label(window, text="Jog Increments")
-joglabel.grid(column=0, row=4, padx=(30,10))
-
-jogtxt = Entry(window,width=10)
-jogtxt.grid(column=1, row=4)
-
 cycleslabel = Label(window, text="Number of Cycles")
 cycleslabel.grid(column=0, row=3, padx=(10,30))
 
 cyclestxt = Entry(window,width=10,)
 cyclestxt.grid(column=1, row=3)
+
+joglabel = Label(window, text="Jog Increments")
+joglabel.grid(column=0, row=4, padx=(30,30))
+
+jogtxt = Entry(window,width=10)
+jogtxt.grid(column=1, row=4)
 
 currentinfo = Label(window, text="Cycles Requested ")
 currentinfo.grid(column=0, row=7, padx=(10,30))
