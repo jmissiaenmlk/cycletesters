@@ -256,7 +256,7 @@ def main():
         cyclesremaininglable.configure(text = cyclehelper)
         requestedhelper = "Cycles Requested: " + str(cyclesInitial)
         currentinfo.configure(text= requestedhelper)
-        cycles_completed = cyclesInitial - cycles
+        cycles_completed = cyclesInitial - cycle_keeper
         reporthelper = "Actual Complete Cycles: " + str(cycles_completed)
         report1lable.configure(text = reporthelper)
         
@@ -287,7 +287,8 @@ def relay_reset():
 
 def stop_program():
     #print("Stop Program")
-    global cycles, cycles_completed
+    global cycles, cycles_completed, cycle_keeper
+    cycle_keeper = cycles
     cyclehelper = "Cycles Remaining : 0"
     cyclesremaininglable.configure(text = cyclehelper)
     cycles= -1
