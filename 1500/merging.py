@@ -302,6 +302,9 @@ def jog_func():
     jog_helper = int(jogtxt.get())
     motor_turns(jog_helper)
 
+def jogstep_func():
+    motor_turns(.5)
+
 startbutton = Button(window, text="Start", command=threading.Thread(target=start_program).start, width=10)
 startbutton.grid(column=0, row=5)
 
@@ -313,6 +316,9 @@ relaysoff.grid(column=0, row=6)
 
 jogbutton = Button(window, text="Jog Dial", command=jog_func, width=10)
 jogbutton.grid(column=1, row=6)
+
+jogbuttonstep = Button(window, text="Half Step", command=jogstep_func, width=10)
+jogbuttonstep.grid(column=1, row=10)
 
 window.mainloop()
 
