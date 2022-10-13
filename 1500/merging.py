@@ -229,7 +229,7 @@ dividerlinelower = Label(window, text="    ____________________________")
 dividerlinelower.grid(column=0, row=10, columnspan = 2, sticky=EW, pady=(20,20))
 
 dividerlineupper = Label(window, text="    ____________________________")
-dividerlineupper.grid(column=0, row=4, columnspan = 2, sticky=EW, pady=(20,20))
+dividerlineupper.grid(column=0, row=6, columnspan = 2, sticky=EW, pady=(20,20))
 
 
 def main():
@@ -322,10 +322,10 @@ def jogstep_func():
         pulse = not pulse # changes pulse pin from high to low each time through loop
 
 startbutton = Button(window, text="Start", command=threading.Thread(target=start_program).start, width=10)
-startbutton.grid(column=0, row=5)
+startbutton.grid(column=0, row=4)
 
 stop = Button(window, text="Stop", command=threading.Thread(target=stop_program).start, width=10)
-stop.grid(column=1, row=5)
+stop.grid(column=1, row=4)
 
 relaysoff = Button(window, text="Relays Off", command=relay_reset, width=10)
 relaysoff.grid(column=0, row=12, sticky=E)
