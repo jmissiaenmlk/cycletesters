@@ -97,8 +97,8 @@ def program_start():
 # various info printed at end of program as well as cleaning up GPIO
 def program_end():
     global cycles, cycles_completed, cycle_keeper
-    cyclehelper = "Cycles Remaining : 0"
-    cyclesremaininglable.configure(text = cyclehelper)
+    #cyclehelper = "Cycles Remaining : 0"
+    #cyclesremaininglable.configure(text = cyclehelper)
     cycles_completed = cyclesInitial - cycle_keeper
     reporthelper = "Actual Complete Cycles: " + str(cycles_completed)
     report1lable.configure(text = reporthelper)
@@ -133,7 +133,7 @@ def pull_shackle_open():
 def shackle_open_check():
     global shackle_not_open_count,shackle_not_open_helper, direction, cycles
     if shackle_not_open_count >= 350 or cycles <= 0:
-        print("erorr with shackle not opening")
+        #print("erorr with shackle not opening")
         program_end()
     elif shackle_not_open_helper == 4:
         push_shackle_closed()
