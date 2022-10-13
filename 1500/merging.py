@@ -224,8 +224,8 @@ cyclesremaininglable.grid(column=0, row=8, padx=(10,30))
 report1lable = Label(window, text="Actual Complete Cycles    ")
 report1lable.grid(column=0, row=9, padx=(10,30))
 
-dividerline = Label(window, text="_______________________________")
-dividerline.grid(column=0, row=10, pady=(10,10))
+dividerline = Label(window, text="____________________________")
+dividerline.grid(column=0, row=10, stick=EW, pady=(20,20))
 
 
 def main():
