@@ -1,3 +1,5 @@
+#!/usr/bin/python -i
+
 from tkinter import *
 from time import sleep
 import threading
@@ -5,6 +7,10 @@ import threading
 window = Tk()
 window.title("1500 Cycle Tester")
 window.geometry('300x300')
+
+cyclesint = IntVar()
+#cyclesint = 0
+cycles = cyclesint
 
 combo1 = Label(window, text="Combo 1")
 combo1.grid(column=0, row=0)
@@ -27,7 +33,7 @@ combo3txt.grid(column=1, row=2)
 cycleslabel = Label(window, text="Number of Cycles")
 cycleslabel.grid(column=0, row=3)
 
-cyclestxt = Entry(window,width=10)
+cyclestxt = Entry(window,width=10, textvariable = cyclesint)
 cyclestxt.grid(column=1, row=3)
 
 currentinfo = Label(window, text=" ")
@@ -36,8 +42,9 @@ currentinfo.grid(column=0, row=6)
 comboprint = Label(window, text=" ")
 comboprint.grid(column=0, row=7)
 
-cyclesint = 0
-cycles = cyclesint
+#cyclesint = IntVar()
+#cyclesint = 0
+#cycles = cyclesint
 
 def main():
     global cycles, cyclesint
