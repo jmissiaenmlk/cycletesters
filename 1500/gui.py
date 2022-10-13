@@ -25,7 +25,7 @@ def startthis():
     cyclesint= int(currentinfo.get())
     cycles = cyclesint
     #main()
-    
+
 #def main():
 #global currentinfo, cyclesint
 cycleslabel = Label(window, text="Number of Cycles")
