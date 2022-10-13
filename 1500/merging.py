@@ -96,6 +96,8 @@ def program_start():
 # various info printed at end of program as well as cleaning up GPIO
 def program_end():
     global cycles
+    cyclehelper = "Cycles Remaining : 0"
+    cyclesremaininglable.configure(text = cyclehelper)
     print("Cycles requested: ", cyclesInitial)
     print("Shackle failed to open ", shackle_not_open_count, " times")
     print("Shackle failed to lock ", shackle_not_locked_count, " times")
@@ -259,19 +261,18 @@ def main():
         
         sleep(.25)
 
-    cyclehelper = "Cycles Remaining : 0"
-    cyclesremaininglable.configure(text = cyclehelper)
     program_end()
 
 # this function sets all the program variables to the user inputs from the GUI
 def start_program():
-    global cycles, cyclesint, combo1, combo2, combo3, distanceToZero, cyclesInitial
+    global cycles, cyclesint, combo1, combo2, combo3, distanceToZero, cyclesInitial, cycles_completed
     cycles= int(cyclestxt.get())
     combo1 = int(combo1txt.get())
     combo2 = int(combo2txt.get())
     combo3 = int(combo3txt.get())
     distanceToZero = 40 - combo3
     cyclesInitial = cycles
+    cycles_completed = cyclesInitial - cycles
     main()
 
 def relay_reset():
