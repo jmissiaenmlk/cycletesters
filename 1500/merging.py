@@ -98,12 +98,12 @@ def program_end():
     global cycles
     cyclehelper = "Cycles Remaining : 0"
     cyclesremaininglable.configure(text = cyclehelper)
-    print("Cycles requested: ", cyclesInitial)
-    print("Shackle failed to open ", shackle_not_open_count, " times")
-    print("Shackle failed to lock ", shackle_not_locked_count, " times")
-    print("Shackle failed to close ", shackle_not_closed_count, " times")
-    print("Actual complete cycles: ", cyclesInitial - (cycles))
-    print("Cycles remaining when stopped: ", cycles)
+    # print("Cycles requested: ", cyclesInitial)
+    # print("Shackle failed to open ", shackle_not_open_count, " times")
+    # print("Shackle failed to lock ", shackle_not_locked_count, " times")
+    # print("Shackle failed to close ", shackle_not_closed_count, " times")
+    # print("Actual complete cycles: ", cyclesInitial - (cycles))
+    # print("Cycles remaining when stopped: ", cycles)
     RELAY.relayOFF(0,unlock_shackle_pin)
     RELAY.relayOFF(0,lock_shackle_pin)
     input("Press enter to exit")
@@ -290,9 +290,7 @@ def stop_program():
     global cycles, cycles_completed
     cyclehelper = "Cycles Remaining : 0"
     cyclesremaininglable.configure(text = cyclehelper)
-    cycles_completed = cyclesInitial - cycles
     cycles= -1
-    #main()
     program_end()
 
 def jog_func():
@@ -313,6 +311,6 @@ jogbutton.grid(column=1, row=6)
 
 window.mainloop()
 
-if __name__ == '__main__':
-    main()
+#if __name__ == '__main__':
+#   main()
 GPIO.cleanup() # clear GPIO allocations after running program
