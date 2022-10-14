@@ -112,6 +112,8 @@ def program_end():
     cycles_completed = cyclesInitial - cycle_keeper
     reporthelper = "Actual Complete Cycles: " + str(cycles_completed)
     report1lable.configure(text = reporthelper)
+    cyclehelper = "Cycles Remaining : " + str(cycle_keeper)
+    cyclesremaininglable.configure(text = cyclehelper)
     # print("Cycles requested: ", cyclesInitial)
     # print("Shackle failed to open ", shackle_not_open_count, " times")
     # print("Shackle failed to lock ", shackle_not_locked_count, " times")
@@ -273,17 +275,16 @@ def main():
 
         sleep(shacklePause)
         sleep(.1)
-        #cycles -= 1
+        cycles -= 1
 
-        cyclehelper = "Cycles Remaining : " + str(cycles)
-        cyclesremaininglable.configure(text = cyclehelper)
         requestedhelper = "Cycles Requested: " + str(cyclesInitial)
         currentinfo.configure(text= requestedhelper)
+        cyclehelper = "Cycles Remaining : " + str(cycles)
+        cyclesremaininglable.configure(text = cyclehelper)
         cycles_completed = cyclesInitial - cycles
         reporthelper = "Actual Complete Cycles: " + str(cycles_completed)
         report1lable.configure(text = reporthelper)
         
-        cycles -= 1
         sleep(.25)
 
     program_end()
