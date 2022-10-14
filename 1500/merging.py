@@ -195,6 +195,7 @@ def shackle_lock_check():
         #cycles += 1
         print("Shackle failed to lock ", shackle_not_locked_count, " times")
         push_shackle_closed()
+        shackle_lock_check()
     # if shackle_not_locked_count >= 25:
     #     print("erorr with shackle not locking")
     #     program_end()
