@@ -273,7 +273,7 @@ def main():
 
         sleep(shacklePause)
         sleep(.1)
-        cycles -= 1
+        #cycles -= 1
 
         cyclehelper = "Cycles Remaining : " + str(cycles)
         cyclesremaininglable.configure(text = cyclehelper)
@@ -283,6 +283,7 @@ def main():
         reporthelper = "Actual Complete Cycles: " + str(cycles_completed)
         report1lable.configure(text = reporthelper)
         
+        cycles -= 1
         sleep(.25)
 
     program_end()
