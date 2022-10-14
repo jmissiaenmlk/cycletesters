@@ -1,6 +1,7 @@
 #!/usr/bin/python -i
 
 from tkinter import *
+from tkinter import ttk # need this for tabs and notebook widget
 from time import sleep
 import threading
 import RPi.GPIO as GPIO
@@ -29,13 +30,22 @@ pulse_pin = 19 # ouput pin that controls motor pulses
 window = Tk()
 window.title("1500 Cycle Tester")
 window.geometry('400x400')
+style=ttk.Style(window) # sets the theme for the gui
+style.theme_use("default")
+notebook = ttk.Notebook(window)
 
+tab1 = Frame(notebook)
+tab2 = Frame(notebook)
+
+notebook.add(tab1,text="Cycler")
+notebook.add(tab2,text="Setup")
+notebook.pack(expand = 1, fill = "both")  
+                                      
 ### input variables from GUI
 combo1 = 0
 combo2 = 0
 combo3 = 0
 cyclesint = IntVar()
-#cycles = cyclesint
 cycles = 0
 cycles_completed = 0
 cycle_keeper = 0
@@ -186,49 +196,46 @@ def shackle_lock_check():
         program_end()
 
 ### GUI LAYOUT ###
-combo1label = Label(window, text="Combo 1")
-combo1label.grid(column=0, row=0, padx=(80,30))
+combo1label = Label(tab1, text="Combo 1")
+combo1label.grid(column=0, row=0, sticky=E, padx=(10,30))
 
-combo2label = Label(window, text="Combo 2")
-combo2label.grid(column=0, row=1, padx=(80,30))
+combo2label = Label(tab1, text="Combo 2")
+combo2label.grid(column=0, row=1, sticky=E, padx=(10,30))
 
-combo3label = Label(window, text="Combo 3")
-combo3label.grid(column=0, row=2, padx=(80,30))
+combo3label = Label(tab1, text="Combo 3")
+combo3label.grid(column=0, row=2, sticky=E, padx=(10,30))
 
-combo1txt = Entry(window,width=10)
+combo1txt = Entry(tab1,width=10, highlightthickness=0)
 combo1txt.grid(column=1, row=0)
 
-combo2txt = Entry(window,width=10)
+combo2txt = Entry(tab1,width=10, highlightthickness=0)
 combo2txt.grid(column=1, row=1)
 
-combo3txt = Entry(window,width=10)
+combo3txt = Entry(tab1,width=10, highlightthickness=0)
 combo3txt.grid(column=1, row=2)
 
-cycleslabel = Label(window, text="Number of Cycles")
-cycleslabel.grid(column=0, row=3, padx=(80,30))
+cycleslabel = Label(tab1, text="Number of Cycles")
+cycleslabel.grid(column=0, row=3, sticky=E, padx=(10,30))
 
-cyclestxt = Entry(window,width=10,)
+cyclestxt = Entry(tab1,width=10, highlightthickness=0)
 cyclestxt.grid(column=1, row=3)
 
-joglabel = Label(window, text="Jog Increments")
+joglabel = Label(tab2, text="Jog Increments")
 joglabel.grid(column=0, row=11, sticky=E, padx=(60,0))
 
-jogtxt = Entry(window,width=8)
+jogtxt = Entry(tab2,width=8, highlightthickness=0)
 jogtxt.grid(column=1, row=11, sticky=EW, padx=(20,20))
 
-currentinfo = Label(window, text="Cycles Requested    ")
+currentinfo = Label(tab1, text="Cycles Requested    ")
 currentinfo.grid(column=0, row=7, columnspan = 2, sticky=W, padx=(10,30))
 
-cyclesremaininglable = Label(window, text="Cycles Remaining    ")
+cyclesremaininglable = Label(tab1, text="Cycles Remaining    ")
 cyclesremaininglable.grid(column=0, row=8, columnspan = 2, sticky=W, padx=(10,30))
 
-report1lable = Label(window, text="Actual Complete Cycles    ")
+report1lable = Label(tab1, text="Actual Complete Cycles    ")
 report1lable.grid(column=0, row=9, columnspan = 2, sticky=W, padx=(10,30))
 
-dividerlinelower = Label(window, text="    ____________________________")
-dividerlinelower.grid(column=0, row=10, columnspan = 2, sticky=EW, pady=(20,20))
-
-dividerlineupper = Label(window, text="    ____________________________")
+dividerlineupper = Label(tab1, text="    ____________________________")
 dividerlineupper.grid(column=0, row=6, columnspan = 2, sticky=EW, pady=(20,20))
 
 
@@ -321,19 +328,21 @@ def jogstep_func():
         sleep(motorSpeed)
         pulse = not pulse # changes pulse pin from high to low each time through loop
 
-startbutton = Button(window, text="Start", bg = 'green', command=threading.Thread(target=start_program).start, width=10)
+
+### GUI BUTTONS ###
+startbutton = Button(tab1, text="Start", bg = 'green',highlightthickness=2, command=threading.Thread(target=start_program).start, width=10)
 startbutton.grid(column=0, row=4)
 
-stop = Button(window, text="Stop", bg = 'red', command=threading.Thread(target=stop_program).start, width=10)
+stop = Button(tab1, text="Stop", bg = 'red', highlightthickness=2, command=threading.Thread(target=stop_program).start, width=10)
 stop.grid(column=1, row=4)
 
-relaysoff = Button(window, text="Relays Off", command=relay_reset, width=10)
+relaysoff = Button(tab2, text="Relays Off", highlightthickness=2, command=relay_reset, width=10)
 relaysoff.grid(column=0, row=12, sticky=E)
 
-jogbutton = Button(window, text="Jog Dial", command=jog_func, width=10)
+jogbutton = Button(tab2, text="Jog Dial", highlightthickness=2, command=jog_func, width=10)
 jogbutton.grid(column=1, row=12, sticky=W)
 
-jogbuttonstep = Button(window, text="Half Step", command=jogstep_func, width=10)
+jogbuttonstep = Button(tab2, text="Half Step", highlightthickness=2, command=jogstep_func, width=10)
 jogbuttonstep.grid(column=1, row=13, sticky=W)
 
 window.mainloop()
