@@ -187,13 +187,17 @@ def shackle_lock_check():
     sleep(shacklePause)
     RELAY.relayOFF(0,unlock_shackle_pin)
     sleep(shacklePause)
-    if GPIO.input(open_switch) == True:
-        shackle_not_locked_count += 1
-        cycles += 1
-        print("Shackle failed to lock ", shackle_not_locked_count, " times")
-    if shackle_not_locked_count == 25:
+    if shackle_not_locked_count >= 25:
         print("erorr with shackle not locking")
         program_end()
+    if GPIO.input(open_switch) == True:
+        shackle_not_locked_count += 1
+        #cycles += 1
+        print("Shackle failed to lock ", shackle_not_locked_count, " times")
+        push_shackle_closed()
+    # if shackle_not_locked_count >= 25:
+    #     print("erorr with shackle not locking")
+    #     program_end()
 
 ### GUI LAYOUT ###
 combo1label = Label(tab1, text="Combo 1")
@@ -270,7 +274,7 @@ def main():
         sleep(.1)
         cycles -= 1
 
-        cyclehelper = "Cycles Remaining : " + str(cycle_keeper - cycles_completed)
+        cyclehelper = "Cycles Remaining : " + str(cycles)
         cyclesremaininglable.configure(text = cyclehelper)
         requestedhelper = "Cycles Requested: " + str(cyclesInitial)
         currentinfo.configure(text= requestedhelper)
