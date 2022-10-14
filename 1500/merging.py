@@ -270,7 +270,7 @@ def main():
         sleep(.1)
         cycles -= 1
 
-        cyclehelper = "Cycles Remaining : " + str(cycles)
+        cyclehelper = "Cycles Remaining : " + str(cycle_keeper - cycles_completed)
         cyclesremaininglable.configure(text = cyclehelper)
         requestedhelper = "Cycles Requested: " + str(cyclesInitial)
         currentinfo.configure(text= requestedhelper)
