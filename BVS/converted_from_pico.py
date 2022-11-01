@@ -56,3 +56,5 @@ def main():
         print("Number of cycles remaining: ", cycles)
         sleep(time_delay)
 
+if __name__ == '__main__':
+    main()
