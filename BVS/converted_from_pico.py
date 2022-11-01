@@ -20,8 +20,7 @@ open_switch = 4 # input pin
 close_switch = 27 # input pin
 lock_shackle_pin = 5 # output pin
 unlock_shackle_pin = 7 # output pin
-
-cycles = 0
+cycles = int(input("Number of cycles: "))
 time_delay = .25
 
 def pull_door():
